@@ -28,74 +28,80 @@ export type AggregatePedido = {
 
 export type PedidoAvgAggregateOutputType = {
   id: number | null
-  ingressoId: number | null
-  comboId: number | null
-  quantidade: number | null
+  qtInteira: number | null
+  qtMeia: number | null
+  valorTotal: number | null
 }
 
 export type PedidoSumAggregateOutputType = {
   id: number | null
-  ingressoId: number | null
-  comboId: number | null
-  quantidade: number | null
+  qtInteira: number | null
+  qtMeia: number | null
+  valorTotal: number | null
 }
 
 export type PedidoMinAggregateOutputType = {
   id: number | null
-  ingressoId: number | null
-  comboId: number | null
-  quantidade: number | null
+  qtInteira: number | null
+  qtMeia: number | null
+  valorTotal: number | null
+  dataHora: Date | null
 }
 
 export type PedidoMaxAggregateOutputType = {
   id: number | null
-  ingressoId: number | null
-  comboId: number | null
-  quantidade: number | null
+  qtInteira: number | null
+  qtMeia: number | null
+  valorTotal: number | null
+  dataHora: Date | null
 }
 
 export type PedidoCountAggregateOutputType = {
   id: number
-  ingressoId: number
-  comboId: number
-  quantidade: number
+  qtInteira: number
+  qtMeia: number
+  valorTotal: number
+  dataHora: number
   _all: number
 }
 
 
 export type PedidoAvgAggregateInputType = {
   id?: true
-  ingressoId?: true
-  comboId?: true
-  quantidade?: true
+  qtInteira?: true
+  qtMeia?: true
+  valorTotal?: true
 }
 
 export type PedidoSumAggregateInputType = {
   id?: true
-  ingressoId?: true
-  comboId?: true
-  quantidade?: true
+  qtInteira?: true
+  qtMeia?: true
+  valorTotal?: true
 }
 
 export type PedidoMinAggregateInputType = {
   id?: true
-  ingressoId?: true
-  comboId?: true
-  quantidade?: true
+  qtInteira?: true
+  qtMeia?: true
+  valorTotal?: true
+  dataHora?: true
 }
 
 export type PedidoMaxAggregateInputType = {
   id?: true
-  ingressoId?: true
-  comboId?: true
-  quantidade?: true
+  qtInteira?: true
+  qtMeia?: true
+  valorTotal?: true
+  dataHora?: true
 }
 
 export type PedidoCountAggregateInputType = {
   id?: true
-  ingressoId?: true
-  comboId?: true
-  quantidade?: true
+  qtInteira?: true
+  qtMeia?: true
+  valorTotal?: true
+  dataHora?: true
   _all?: true
 }
 
@@ -187,9 +193,10 @@ export type PedidoGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 
 export type PedidoGroupByOutputType = {
   id: number
-  ingressoId: number
-  comboId: number
-  quantidade: number
+  qtInteira: number
+  qtMeia: number
+  valorTotal: number
+  dataHora: Date
   _count: PedidoCountAggregateOutputType | null
   _avg: PedidoAvgAggregateOutputType | null
   _sum: PedidoSumAggregateOutputType | null
@@ -217,20 +224,22 @@ export type PedidoWhereInput = {
   OR?: Prisma.PedidoWhereInput[]
   NOT?: Prisma.PedidoWhereInput | Prisma.PedidoWhereInput[]
   id?: Prisma.IntFilter<"Pedido"> | number
-  ingressoId?: Prisma.IntFilter<"Pedido"> | number
-  comboId?: Prisma.IntFilter<"Pedido"> | number
-  quantidade?: Prisma.IntFilter<"Pedido"> | number
-  ingresso?: Prisma.XOR<Prisma.IngressoScalarRelationFilter, Prisma.IngressoWhereInput>
-  combo?: Prisma.XOR<Prisma.LancheComboScalarRelationFilter, Prisma.LancheComboWhereInput>
+  qtInteira?: Prisma.IntFilter<"Pedido"> | number
+  qtMeia?: Prisma.IntFilter<"Pedido"> | number
+  valorTotal?: Prisma.FloatFilter<"Pedido"> | number
+  dataHora?: Prisma.DateTimeFilter<"Pedido"> | Date | string
+  ingressos?: Prisma.IngressoListRelationFilter
+  lanches?: Prisma.LancheComboListRelationFilter
 }
 
 export type PedidoOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  ingressoId?: Prisma.SortOrder
-  comboId?: Prisma.SortOrder
-  quantidade?: Prisma.SortOrder
-  ingresso?: Prisma.IngressoOrderByWithRelationInput
-  combo?: Prisma.LancheComboOrderByWithRelationInput
+  qtInteira?: Prisma.SortOrder
+  qtMeia?: Prisma.SortOrder
+  valorTotal?: Prisma.SortOrder
+  dataHora?: Prisma.SortOrder
+  ingressos?: Prisma.IngressoOrderByRelationAggregateInput
+  lanches?: Prisma.LancheComboOrderByRelationAggregateInput
 }
 
 export type PedidoWhereUniqueInput = Prisma.AtLeast<{
@@ -238,18 +247,20 @@ export type PedidoWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.PedidoWhereInput | Prisma.PedidoWhereInput[]
   OR?: Prisma.PedidoWhereInput[]
   NOT?: Prisma.PedidoWhereInput | Prisma.PedidoWhereInput[]
-  ingressoId?: Prisma.IntFilter<"Pedido"> | number
-  comboId?: Prisma.IntFilter<"Pedido"> | number
-  quantidade?: Prisma.IntFilter<"Pedido"> | number
-  ingresso?: Prisma.XOR<Prisma.IngressoScalarRelationFilter, Prisma.IngressoWhereInput>
-  combo?: Prisma.XOR<Prisma.LancheComboScalarRelationFilter, Prisma.LancheComboWhereInput>
+  qtInteira?: Prisma.IntFilter<"Pedido"> | number
+  qtMeia?: Prisma.IntFilter<"Pedido"> | number
+  valorTotal?: Prisma.FloatFilter<"Pedido"> | number
+  dataHora?: Prisma.DateTimeFilter<"Pedido"> | Date | string
+  ingressos?: Prisma.IngressoListRelationFilter
+  lanches?: Prisma.LancheComboListRelationFilter
 }, "id">
 
 export type PedidoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  ingressoId?: Prisma.SortOrder
-  comboId?: Prisma.SortOrder
-  quantidade?: Prisma.SortOrder
+  qtInteira?: Prisma.SortOrder
+  qtMeia?: Prisma.SortOrder
+  valorTotal?: Prisma.SortOrder
+  dataHora?: Prisma.SortOrder
   _count?: Prisma.PedidoCountOrderByAggregateInput
   _avg?: Prisma.PedidoAvgOrderByAggregateInput
   _max?: Prisma.PedidoMaxOrderByAggregateInput
@@ -262,375 +273,344 @@ export type PedidoScalarWhereWithAggregatesInput = {
   OR?: Prisma.PedidoScalarWhereWithAggregatesInput[]
   NOT?: Prisma.PedidoScalarWhereWithAggregatesInput | Prisma.PedidoScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Pedido"> | number
-  ingressoId?: Prisma.IntWithAggregatesFilter<"Pedido"> | number
-  comboId?: Prisma.IntWithAggregatesFilter<"Pedido"> | number
-  quantidade?: Prisma.IntWithAggregatesFilter<"Pedido"> | number
+  qtInteira?: Prisma.IntWithAggregatesFilter<"Pedido"> | number
+  qtMeia?: Prisma.IntWithAggregatesFilter<"Pedido"> | number
+  valorTotal?: Prisma.FloatWithAggregatesFilter<"Pedido"> | number
+  dataHora?: Prisma.DateTimeWithAggregatesFilter<"Pedido"> | Date | string
 }
 
 export type PedidoCreateInput = {
-  quantidade: number
-  ingresso: Prisma.IngressoCreateNestedOneWithoutPedidosInput
-  combo: Prisma.LancheComboCreateNestedOneWithoutPedidosInput
+  qtInteira: number
+  qtMeia: number
+  valorTotal: number
+  dataHora?: Date | string
+  ingressos?: Prisma.IngressoCreateNestedManyWithoutPedidoInput
+  lanches?: Prisma.LancheComboCreateNestedManyWithoutPedidoInput
 }
 
 export type PedidoUncheckedCreateInput = {
   id?: number
-  ingressoId: number
-  comboId: number
-  quantidade: number
+  qtInteira: number
+  qtMeia: number
+  valorTotal: number
+  dataHora?: Date | string
+  ingressos?: Prisma.IngressoUncheckedCreateNestedManyWithoutPedidoInput
+  lanches?: Prisma.LancheComboUncheckedCreateNestedManyWithoutPedidoInput
 }
 
 export type PedidoUpdateInput = {
-  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
-  ingresso?: Prisma.IngressoUpdateOneRequiredWithoutPedidosNestedInput
-  combo?: Prisma.LancheComboUpdateOneRequiredWithoutPedidosNestedInput
+  qtInteira?: Prisma.IntFieldUpdateOperationsInput | number
+  qtMeia?: Prisma.IntFieldUpdateOperationsInput | number
+  valorTotal?: Prisma.FloatFieldUpdateOperationsInput | number
+  dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ingressos?: Prisma.IngressoUpdateManyWithoutPedidoNestedInput
+  lanches?: Prisma.LancheComboUpdateManyWithoutPedidoNestedInput
 }
 
 export type PedidoUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  ingressoId?: Prisma.IntFieldUpdateOperationsInput | number
-  comboId?: Prisma.IntFieldUpdateOperationsInput | number
-  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
+  qtInteira?: Prisma.IntFieldUpdateOperationsInput | number
+  qtMeia?: Prisma.IntFieldUpdateOperationsInput | number
+  valorTotal?: Prisma.FloatFieldUpdateOperationsInput | number
+  dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ingressos?: Prisma.IngressoUncheckedUpdateManyWithoutPedidoNestedInput
+  lanches?: Prisma.LancheComboUncheckedUpdateManyWithoutPedidoNestedInput
 }
 
 export type PedidoCreateManyInput = {
   id?: number
-  ingressoId: number
-  comboId: number
-  quantidade: number
+  qtInteira: number
+  qtMeia: number
+  valorTotal: number
+  dataHora?: Date | string
 }
 
 export type PedidoUpdateManyMutationInput = {
-  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
+  qtInteira?: Prisma.IntFieldUpdateOperationsInput | number
+  qtMeia?: Prisma.IntFieldUpdateOperationsInput | number
+  valorTotal?: Prisma.FloatFieldUpdateOperationsInput | number
+  dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PedidoUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  ingressoId?: Prisma.IntFieldUpdateOperationsInput | number
-  comboId?: Prisma.IntFieldUpdateOperationsInput | number
-  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
+  qtInteira?: Prisma.IntFieldUpdateOperationsInput | number
+  qtMeia?: Prisma.IntFieldUpdateOperationsInput | number
+  valorTotal?: Prisma.FloatFieldUpdateOperationsInput | number
+  dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type PedidoListRelationFilter = {
-  every?: Prisma.PedidoWhereInput
-  some?: Prisma.PedidoWhereInput
-  none?: Prisma.PedidoWhereInput
-}
-
-export type PedidoOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
+export type PedidoNullableScalarRelationFilter = {
+  is?: Prisma.PedidoWhereInput | null
+  isNot?: Prisma.PedidoWhereInput | null
 }
 
 export type PedidoCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  ingressoId?: Prisma.SortOrder
-  comboId?: Prisma.SortOrder
-  quantidade?: Prisma.SortOrder
+  qtInteira?: Prisma.SortOrder
+  qtMeia?: Prisma.SortOrder
+  valorTotal?: Prisma.SortOrder
+  dataHora?: Prisma.SortOrder
 }
 
 export type PedidoAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  ingressoId?: Prisma.SortOrder
-  comboId?: Prisma.SortOrder
-  quantidade?: Prisma.SortOrder
+  qtInteira?: Prisma.SortOrder
+  qtMeia?: Prisma.SortOrder
+  valorTotal?: Prisma.SortOrder
 }
 
 export type PedidoMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  ingressoId?: Prisma.SortOrder
-  comboId?: Prisma.SortOrder
-  quantidade?: Prisma.SortOrder
+  qtInteira?: Prisma.SortOrder
+  qtMeia?: Prisma.SortOrder
+  valorTotal?: Prisma.SortOrder
+  dataHora?: Prisma.SortOrder
 }
 
 export type PedidoMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  ingressoId?: Prisma.SortOrder
-  comboId?: Prisma.SortOrder
-  quantidade?: Prisma.SortOrder
+  qtInteira?: Prisma.SortOrder
+  qtMeia?: Prisma.SortOrder
+  valorTotal?: Prisma.SortOrder
+  dataHora?: Prisma.SortOrder
 }
 
 export type PedidoSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  ingressoId?: Prisma.SortOrder
-  comboId?: Prisma.SortOrder
-  quantidade?: Prisma.SortOrder
+  qtInteira?: Prisma.SortOrder
+  qtMeia?: Prisma.SortOrder
+  valorTotal?: Prisma.SortOrder
 }
 
-export type PedidoCreateNestedManyWithoutIngressoInput = {
-  create?: Prisma.XOR<Prisma.PedidoCreateWithoutIngressoInput, Prisma.PedidoUncheckedCreateWithoutIngressoInput> | Prisma.PedidoCreateWithoutIngressoInput[] | Prisma.PedidoUncheckedCreateWithoutIngressoInput[]
-  connectOrCreate?: Prisma.PedidoCreateOrConnectWithoutIngressoInput | Prisma.PedidoCreateOrConnectWithoutIngressoInput[]
-  createMany?: Prisma.PedidoCreateManyIngressoInputEnvelope
-  connect?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
+export type PedidoCreateNestedOneWithoutIngressosInput = {
+  create?: Prisma.XOR<Prisma.PedidoCreateWithoutIngressosInput, Prisma.PedidoUncheckedCreateWithoutIngressosInput>
+  connectOrCreate?: Prisma.PedidoCreateOrConnectWithoutIngressosInput
+  connect?: Prisma.PedidoWhereUniqueInput
 }
 
-export type PedidoUncheckedCreateNestedManyWithoutIngressoInput = {
-  create?: Prisma.XOR<Prisma.PedidoCreateWithoutIngressoInput, Prisma.PedidoUncheckedCreateWithoutIngressoInput> | Prisma.PedidoCreateWithoutIngressoInput[] | Prisma.PedidoUncheckedCreateWithoutIngressoInput[]
-  connectOrCreate?: Prisma.PedidoCreateOrConnectWithoutIngressoInput | Prisma.PedidoCreateOrConnectWithoutIngressoInput[]
-  createMany?: Prisma.PedidoCreateManyIngressoInputEnvelope
-  connect?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
+export type PedidoUpdateOneWithoutIngressosNestedInput = {
+  create?: Prisma.XOR<Prisma.PedidoCreateWithoutIngressosInput, Prisma.PedidoUncheckedCreateWithoutIngressosInput>
+  connectOrCreate?: Prisma.PedidoCreateOrConnectWithoutIngressosInput
+  upsert?: Prisma.PedidoUpsertWithoutIngressosInput
+  disconnect?: Prisma.PedidoWhereInput | boolean
+  delete?: Prisma.PedidoWhereInput | boolean
+  connect?: Prisma.PedidoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PedidoUpdateToOneWithWhereWithoutIngressosInput, Prisma.PedidoUpdateWithoutIngressosInput>, Prisma.PedidoUncheckedUpdateWithoutIngressosInput>
 }
 
-export type PedidoUpdateManyWithoutIngressoNestedInput = {
-  create?: Prisma.XOR<Prisma.PedidoCreateWithoutIngressoInput, Prisma.PedidoUncheckedCreateWithoutIngressoInput> | Prisma.PedidoCreateWithoutIngressoInput[] | Prisma.PedidoUncheckedCreateWithoutIngressoInput[]
-  connectOrCreate?: Prisma.PedidoCreateOrConnectWithoutIngressoInput | Prisma.PedidoCreateOrConnectWithoutIngressoInput[]
-  upsert?: Prisma.PedidoUpsertWithWhereUniqueWithoutIngressoInput | Prisma.PedidoUpsertWithWhereUniqueWithoutIngressoInput[]
-  createMany?: Prisma.PedidoCreateManyIngressoInputEnvelope
-  set?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
-  disconnect?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
-  delete?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
-  connect?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
-  update?: Prisma.PedidoUpdateWithWhereUniqueWithoutIngressoInput | Prisma.PedidoUpdateWithWhereUniqueWithoutIngressoInput[]
-  updateMany?: Prisma.PedidoUpdateManyWithWhereWithoutIngressoInput | Prisma.PedidoUpdateManyWithWhereWithoutIngressoInput[]
-  deleteMany?: Prisma.PedidoScalarWhereInput | Prisma.PedidoScalarWhereInput[]
+export type PedidoCreateNestedOneWithoutLanchesInput = {
+  create?: Prisma.XOR<Prisma.PedidoCreateWithoutLanchesInput, Prisma.PedidoUncheckedCreateWithoutLanchesInput>
+  connectOrCreate?: Prisma.PedidoCreateOrConnectWithoutLanchesInput
+  connect?: Prisma.PedidoWhereUniqueInput
 }
 
-export type PedidoUncheckedUpdateManyWithoutIngressoNestedInput = {
-  create?: Prisma.XOR<Prisma.PedidoCreateWithoutIngressoInput, Prisma.PedidoUncheckedCreateWithoutIngressoInput> | Prisma.PedidoCreateWithoutIngressoInput[] | Prisma.PedidoUncheckedCreateWithoutIngressoInput[]
-  connectOrCreate?: Prisma.PedidoCreateOrConnectWithoutIngressoInput | Prisma.PedidoCreateOrConnectWithoutIngressoInput[]
-  upsert?: Prisma.PedidoUpsertWithWhereUniqueWithoutIngressoInput | Prisma.PedidoUpsertWithWhereUniqueWithoutIngressoInput[]
-  createMany?: Prisma.PedidoCreateManyIngressoInputEnvelope
-  set?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
-  disconnect?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
-  delete?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
-  connect?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
-  update?: Prisma.PedidoUpdateWithWhereUniqueWithoutIngressoInput | Prisma.PedidoUpdateWithWhereUniqueWithoutIngressoInput[]
-  updateMany?: Prisma.PedidoUpdateManyWithWhereWithoutIngressoInput | Prisma.PedidoUpdateManyWithWhereWithoutIngressoInput[]
-  deleteMany?: Prisma.PedidoScalarWhereInput | Prisma.PedidoScalarWhereInput[]
+export type PedidoUpdateOneWithoutLanchesNestedInput = {
+  create?: Prisma.XOR<Prisma.PedidoCreateWithoutLanchesInput, Prisma.PedidoUncheckedCreateWithoutLanchesInput>
+  connectOrCreate?: Prisma.PedidoCreateOrConnectWithoutLanchesInput
+  upsert?: Prisma.PedidoUpsertWithoutLanchesInput
+  disconnect?: Prisma.PedidoWhereInput | boolean
+  delete?: Prisma.PedidoWhereInput | boolean
+  connect?: Prisma.PedidoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PedidoUpdateToOneWithWhereWithoutLanchesInput, Prisma.PedidoUpdateWithoutLanchesInput>, Prisma.PedidoUncheckedUpdateWithoutLanchesInput>
 }
 
-export type PedidoCreateNestedManyWithoutComboInput = {
-  create?: Prisma.XOR<Prisma.PedidoCreateWithoutComboInput, Prisma.PedidoUncheckedCreateWithoutComboInput> | Prisma.PedidoCreateWithoutComboInput[] | Prisma.PedidoUncheckedCreateWithoutComboInput[]
-  connectOrCreate?: Prisma.PedidoCreateOrConnectWithoutComboInput | Prisma.PedidoCreateOrConnectWithoutComboInput[]
-  createMany?: Prisma.PedidoCreateManyComboInputEnvelope
-  connect?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
+export type PedidoCreateWithoutIngressosInput = {
+  qtInteira: number
+  qtMeia: number
+  valorTotal: number
+  dataHora?: Date | string
+  lanches?: Prisma.LancheComboCreateNestedManyWithoutPedidoInput
 }
 
-export type PedidoUncheckedCreateNestedManyWithoutComboInput = {
-  create?: Prisma.XOR<Prisma.PedidoCreateWithoutComboInput, Prisma.PedidoUncheckedCreateWithoutComboInput> | Prisma.PedidoCreateWithoutComboInput[] | Prisma.PedidoUncheckedCreateWithoutComboInput[]
-  connectOrCreate?: Prisma.PedidoCreateOrConnectWithoutComboInput | Prisma.PedidoCreateOrConnectWithoutComboInput[]
-  createMany?: Prisma.PedidoCreateManyComboInputEnvelope
-  connect?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
-}
-
-export type PedidoUpdateManyWithoutComboNestedInput = {
-  create?: Prisma.XOR<Prisma.PedidoCreateWithoutComboInput, Prisma.PedidoUncheckedCreateWithoutComboInput> | Prisma.PedidoCreateWithoutComboInput[] | Prisma.PedidoUncheckedCreateWithoutComboInput[]
-  connectOrCreate?: Prisma.PedidoCreateOrConnectWithoutComboInput | Prisma.PedidoCreateOrConnectWithoutComboInput[]
-  upsert?: Prisma.PedidoUpsertWithWhereUniqueWithoutComboInput | Prisma.PedidoUpsertWithWhereUniqueWithoutComboInput[]
-  createMany?: Prisma.PedidoCreateManyComboInputEnvelope
-  set?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
-  disconnect?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
-  delete?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
-  connect?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
-  update?: Prisma.PedidoUpdateWithWhereUniqueWithoutComboInput | Prisma.PedidoUpdateWithWhereUniqueWithoutComboInput[]
-  updateMany?: Prisma.PedidoUpdateManyWithWhereWithoutComboInput | Prisma.PedidoUpdateManyWithWhereWithoutComboInput[]
-  deleteMany?: Prisma.PedidoScalarWhereInput | Prisma.PedidoScalarWhereInput[]
-}
-
-export type PedidoUncheckedUpdateManyWithoutComboNestedInput = {
-  create?: Prisma.XOR<Prisma.PedidoCreateWithoutComboInput, Prisma.PedidoUncheckedCreateWithoutComboInput> | Prisma.PedidoCreateWithoutComboInput[] | Prisma.PedidoUncheckedCreateWithoutComboInput[]
-  connectOrCreate?: Prisma.PedidoCreateOrConnectWithoutComboInput | Prisma.PedidoCreateOrConnectWithoutComboInput[]
-  upsert?: Prisma.PedidoUpsertWithWhereUniqueWithoutComboInput | Prisma.PedidoUpsertWithWhereUniqueWithoutComboInput[]
-  createMany?: Prisma.PedidoCreateManyComboInputEnvelope
-  set?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
-  disconnect?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
-  delete?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
-  connect?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
-  update?: Prisma.PedidoUpdateWithWhereUniqueWithoutComboInput | Prisma.PedidoUpdateWithWhereUniqueWithoutComboInput[]
-  updateMany?: Prisma.PedidoUpdateManyWithWhereWithoutComboInput | Prisma.PedidoUpdateManyWithWhereWithoutComboInput[]
-  deleteMany?: Prisma.PedidoScalarWhereInput | Prisma.PedidoScalarWhereInput[]
-}
-
-export type PedidoCreateWithoutIngressoInput = {
-  quantidade: number
-  combo: Prisma.LancheComboCreateNestedOneWithoutPedidosInput
-}
-
-export type PedidoUncheckedCreateWithoutIngressoInput = {
+export type PedidoUncheckedCreateWithoutIngressosInput = {
   id?: number
-  comboId: number
-  quantidade: number
+  qtInteira: number
+  qtMeia: number
+  valorTotal: number
+  dataHora?: Date | string
+  lanches?: Prisma.LancheComboUncheckedCreateNestedManyWithoutPedidoInput
 }
 
-export type PedidoCreateOrConnectWithoutIngressoInput = {
+export type PedidoCreateOrConnectWithoutIngressosInput = {
   where: Prisma.PedidoWhereUniqueInput
-  create: Prisma.XOR<Prisma.PedidoCreateWithoutIngressoInput, Prisma.PedidoUncheckedCreateWithoutIngressoInput>
+  create: Prisma.XOR<Prisma.PedidoCreateWithoutIngressosInput, Prisma.PedidoUncheckedCreateWithoutIngressosInput>
 }
 
-export type PedidoCreateManyIngressoInputEnvelope = {
-  data: Prisma.PedidoCreateManyIngressoInput | Prisma.PedidoCreateManyIngressoInput[]
-  skipDuplicates?: boolean
+export type PedidoUpsertWithoutIngressosInput = {
+  update: Prisma.XOR<Prisma.PedidoUpdateWithoutIngressosInput, Prisma.PedidoUncheckedUpdateWithoutIngressosInput>
+  create: Prisma.XOR<Prisma.PedidoCreateWithoutIngressosInput, Prisma.PedidoUncheckedCreateWithoutIngressosInput>
+  where?: Prisma.PedidoWhereInput
 }
 
-export type PedidoUpsertWithWhereUniqueWithoutIngressoInput = {
-  where: Prisma.PedidoWhereUniqueInput
-  update: Prisma.XOR<Prisma.PedidoUpdateWithoutIngressoInput, Prisma.PedidoUncheckedUpdateWithoutIngressoInput>
-  create: Prisma.XOR<Prisma.PedidoCreateWithoutIngressoInput, Prisma.PedidoUncheckedCreateWithoutIngressoInput>
+export type PedidoUpdateToOneWithWhereWithoutIngressosInput = {
+  where?: Prisma.PedidoWhereInput
+  data: Prisma.XOR<Prisma.PedidoUpdateWithoutIngressosInput, Prisma.PedidoUncheckedUpdateWithoutIngressosInput>
 }
 
-export type PedidoUpdateWithWhereUniqueWithoutIngressoInput = {
-  where: Prisma.PedidoWhereUniqueInput
-  data: Prisma.XOR<Prisma.PedidoUpdateWithoutIngressoInput, Prisma.PedidoUncheckedUpdateWithoutIngressoInput>
+export type PedidoUpdateWithoutIngressosInput = {
+  qtInteira?: Prisma.IntFieldUpdateOperationsInput | number
+  qtMeia?: Prisma.IntFieldUpdateOperationsInput | number
+  valorTotal?: Prisma.FloatFieldUpdateOperationsInput | number
+  dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lanches?: Prisma.LancheComboUpdateManyWithoutPedidoNestedInput
 }
 
-export type PedidoUpdateManyWithWhereWithoutIngressoInput = {
-  where: Prisma.PedidoScalarWhereInput
-  data: Prisma.XOR<Prisma.PedidoUpdateManyMutationInput, Prisma.PedidoUncheckedUpdateManyWithoutIngressoInput>
+export type PedidoUncheckedUpdateWithoutIngressosInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  qtInteira?: Prisma.IntFieldUpdateOperationsInput | number
+  qtMeia?: Prisma.IntFieldUpdateOperationsInput | number
+  valorTotal?: Prisma.FloatFieldUpdateOperationsInput | number
+  dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lanches?: Prisma.LancheComboUncheckedUpdateManyWithoutPedidoNestedInput
 }
 
-export type PedidoScalarWhereInput = {
-  AND?: Prisma.PedidoScalarWhereInput | Prisma.PedidoScalarWhereInput[]
-  OR?: Prisma.PedidoScalarWhereInput[]
-  NOT?: Prisma.PedidoScalarWhereInput | Prisma.PedidoScalarWhereInput[]
-  id?: Prisma.IntFilter<"Pedido"> | number
-  ingressoId?: Prisma.IntFilter<"Pedido"> | number
-  comboId?: Prisma.IntFilter<"Pedido"> | number
-  quantidade?: Prisma.IntFilter<"Pedido"> | number
+export type PedidoCreateWithoutLanchesInput = {
+  qtInteira: number
+  qtMeia: number
+  valorTotal: number
+  dataHora?: Date | string
+  ingressos?: Prisma.IngressoCreateNestedManyWithoutPedidoInput
 }
 
-export type PedidoCreateWithoutComboInput = {
-  quantidade: number
-  ingresso: Prisma.IngressoCreateNestedOneWithoutPedidosInput
-}
-
-export type PedidoUncheckedCreateWithoutComboInput = {
+export type PedidoUncheckedCreateWithoutLanchesInput = {
   id?: number
-  ingressoId: number
-  quantidade: number
+  qtInteira: number
+  qtMeia: number
+  valorTotal: number
+  dataHora?: Date | string
+  ingressos?: Prisma.IngressoUncheckedCreateNestedManyWithoutPedidoInput
 }
 
-export type PedidoCreateOrConnectWithoutComboInput = {
+export type PedidoCreateOrConnectWithoutLanchesInput = {
   where: Prisma.PedidoWhereUniqueInput
-  create: Prisma.XOR<Prisma.PedidoCreateWithoutComboInput, Prisma.PedidoUncheckedCreateWithoutComboInput>
+  create: Prisma.XOR<Prisma.PedidoCreateWithoutLanchesInput, Prisma.PedidoUncheckedCreateWithoutLanchesInput>
 }
 
-export type PedidoCreateManyComboInputEnvelope = {
-  data: Prisma.PedidoCreateManyComboInput | Prisma.PedidoCreateManyComboInput[]
-  skipDuplicates?: boolean
+export type PedidoUpsertWithoutLanchesInput = {
+  update: Prisma.XOR<Prisma.PedidoUpdateWithoutLanchesInput, Prisma.PedidoUncheckedUpdateWithoutLanchesInput>
+  create: Prisma.XOR<Prisma.PedidoCreateWithoutLanchesInput, Prisma.PedidoUncheckedCreateWithoutLanchesInput>
+  where?: Prisma.PedidoWhereInput
 }
 
-export type PedidoUpsertWithWhereUniqueWithoutComboInput = {
-  where: Prisma.PedidoWhereUniqueInput
-  update: Prisma.XOR<Prisma.PedidoUpdateWithoutComboInput, Prisma.PedidoUncheckedUpdateWithoutComboInput>
-  create: Prisma.XOR<Prisma.PedidoCreateWithoutComboInput, Prisma.PedidoUncheckedCreateWithoutComboInput>
+export type PedidoUpdateToOneWithWhereWithoutLanchesInput = {
+  where?: Prisma.PedidoWhereInput
+  data: Prisma.XOR<Prisma.PedidoUpdateWithoutLanchesInput, Prisma.PedidoUncheckedUpdateWithoutLanchesInput>
 }
 
-export type PedidoUpdateWithWhereUniqueWithoutComboInput = {
-  where: Prisma.PedidoWhereUniqueInput
-  data: Prisma.XOR<Prisma.PedidoUpdateWithoutComboInput, Prisma.PedidoUncheckedUpdateWithoutComboInput>
+export type PedidoUpdateWithoutLanchesInput = {
+  qtInteira?: Prisma.IntFieldUpdateOperationsInput | number
+  qtMeia?: Prisma.IntFieldUpdateOperationsInput | number
+  valorTotal?: Prisma.FloatFieldUpdateOperationsInput | number
+  dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ingressos?: Prisma.IngressoUpdateManyWithoutPedidoNestedInput
 }
 
-export type PedidoUpdateManyWithWhereWithoutComboInput = {
-  where: Prisma.PedidoScalarWhereInput
-  data: Prisma.XOR<Prisma.PedidoUpdateManyMutationInput, Prisma.PedidoUncheckedUpdateManyWithoutComboInput>
-}
-
-export type PedidoCreateManyIngressoInput = {
-  id?: number
-  comboId: number
-  quantidade: number
-}
-
-export type PedidoUpdateWithoutIngressoInput = {
-  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
-  combo?: Prisma.LancheComboUpdateOneRequiredWithoutPedidosNestedInput
-}
-
-export type PedidoUncheckedUpdateWithoutIngressoInput = {
+export type PedidoUncheckedUpdateWithoutLanchesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  comboId?: Prisma.IntFieldUpdateOperationsInput | number
-  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
+  qtInteira?: Prisma.IntFieldUpdateOperationsInput | number
+  qtMeia?: Prisma.IntFieldUpdateOperationsInput | number
+  valorTotal?: Prisma.FloatFieldUpdateOperationsInput | number
+  dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ingressos?: Prisma.IngressoUncheckedUpdateManyWithoutPedidoNestedInput
 }
 
-export type PedidoUncheckedUpdateManyWithoutIngressoInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  comboId?: Prisma.IntFieldUpdateOperationsInput | number
-  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
+
+/**
+ * Count Type PedidoCountOutputType
+ */
+
+export type PedidoCountOutputType = {
+  ingressos: number
+  lanches: number
 }
 
-export type PedidoCreateManyComboInput = {
-  id?: number
-  ingressoId: number
-  quantidade: number
+export type PedidoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  ingressos?: boolean | PedidoCountOutputTypeCountIngressosArgs
+  lanches?: boolean | PedidoCountOutputTypeCountLanchesArgs
 }
 
-export type PedidoUpdateWithoutComboInput = {
-  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
-  ingresso?: Prisma.IngressoUpdateOneRequiredWithoutPedidosNestedInput
+/**
+ * PedidoCountOutputType without action
+ */
+export type PedidoCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PedidoCountOutputType
+   */
+  select?: Prisma.PedidoCountOutputTypeSelect<ExtArgs> | null
 }
 
-export type PedidoUncheckedUpdateWithoutComboInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  ingressoId?: Prisma.IntFieldUpdateOperationsInput | number
-  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
+/**
+ * PedidoCountOutputType without action
+ */
+export type PedidoCountOutputTypeCountIngressosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.IngressoWhereInput
 }
 
-export type PedidoUncheckedUpdateManyWithoutComboInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  ingressoId?: Prisma.IntFieldUpdateOperationsInput | number
-  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
+/**
+ * PedidoCountOutputType without action
+ */
+export type PedidoCountOutputTypeCountLanchesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LancheComboWhereInput
 }
-
 
 
 export type PedidoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  ingressoId?: boolean
-  comboId?: boolean
-  quantidade?: boolean
-  ingresso?: boolean | Prisma.IngressoDefaultArgs<ExtArgs>
-  combo?: boolean | Prisma.LancheComboDefaultArgs<ExtArgs>
+  qtInteira?: boolean
+  qtMeia?: boolean
+  valorTotal?: boolean
+  dataHora?: boolean
+  ingressos?: boolean | Prisma.Pedido$ingressosArgs<ExtArgs>
+  lanches?: boolean | Prisma.Pedido$lanchesArgs<ExtArgs>
+  _count?: boolean | Prisma.PedidoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pedido"]>
 
 export type PedidoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  ingressoId?: boolean
-  comboId?: boolean
-  quantidade?: boolean
-  ingresso?: boolean | Prisma.IngressoDefaultArgs<ExtArgs>
-  combo?: boolean | Prisma.LancheComboDefaultArgs<ExtArgs>
+  qtInteira?: boolean
+  qtMeia?: boolean
+  valorTotal?: boolean
+  dataHora?: boolean
 }, ExtArgs["result"]["pedido"]>
 
 export type PedidoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  ingressoId?: boolean
-  comboId?: boolean
-  quantidade?: boolean
-  ingresso?: boolean | Prisma.IngressoDefaultArgs<ExtArgs>
-  combo?: boolean | Prisma.LancheComboDefaultArgs<ExtArgs>
+  qtInteira?: boolean
+  qtMeia?: boolean
+  valorTotal?: boolean
+  dataHora?: boolean
 }, ExtArgs["result"]["pedido"]>
 
 export type PedidoSelectScalar = {
   id?: boolean
-  ingressoId?: boolean
-  comboId?: boolean
-  quantidade?: boolean
+  qtInteira?: boolean
+  qtMeia?: boolean
+  valorTotal?: boolean
+  dataHora?: boolean
 }
 
-export type PedidoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ingressoId" | "comboId" | "quantidade", ExtArgs["result"]["pedido"]>
+export type PedidoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "qtInteira" | "qtMeia" | "valorTotal" | "dataHora", ExtArgs["result"]["pedido"]>
 export type PedidoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  ingresso?: boolean | Prisma.IngressoDefaultArgs<ExtArgs>
-  combo?: boolean | Prisma.LancheComboDefaultArgs<ExtArgs>
+  ingressos?: boolean | Prisma.Pedido$ingressosArgs<ExtArgs>
+  lanches?: boolean | Prisma.Pedido$lanchesArgs<ExtArgs>
+  _count?: boolean | Prisma.PedidoCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type PedidoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  ingresso?: boolean | Prisma.IngressoDefaultArgs<ExtArgs>
-  combo?: boolean | Prisma.LancheComboDefaultArgs<ExtArgs>
-}
-export type PedidoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  ingresso?: boolean | Prisma.IngressoDefaultArgs<ExtArgs>
-  combo?: boolean | Prisma.LancheComboDefaultArgs<ExtArgs>
-}
+export type PedidoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type PedidoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $PedidoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Pedido"
   objects: {
-    ingresso: Prisma.$IngressoPayload<ExtArgs>
-    combo: Prisma.$LancheComboPayload<ExtArgs>
+    ingressos: Prisma.$IngressoPayload<ExtArgs>[]
+    lanches: Prisma.$LancheComboPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    ingressoId: number
-    comboId: number
-    quantidade: number
+    qtInteira: number
+    qtMeia: number
+    valorTotal: number
+    dataHora: Date
   }, ExtArgs["result"]["pedido"]>
   composites: {}
 }
@@ -1025,8 +1005,8 @@ readonly fields: PedidoFieldRefs;
  */
 export interface Prisma__PedidoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  ingresso<T extends Prisma.IngressoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.IngressoDefaultArgs<ExtArgs>>): Prisma.Prisma__IngressoClient<runtime.Types.Result.GetResult<Prisma.$IngressoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  combo<T extends Prisma.LancheComboDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LancheComboDefaultArgs<ExtArgs>>): Prisma.Prisma__LancheComboClient<runtime.Types.Result.GetResult<Prisma.$LancheComboPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  ingressos<T extends Prisma.Pedido$ingressosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pedido$ingressosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IngressoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  lanches<T extends Prisma.Pedido$lanchesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pedido$lanchesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LancheComboPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1057,9 +1037,10 @@ export interface Prisma__PedidoClient<T, Null = never, ExtArgs extends runtime.T
  */
 export interface PedidoFieldRefs {
   readonly id: Prisma.FieldRef<"Pedido", 'Int'>
-  readonly ingressoId: Prisma.FieldRef<"Pedido", 'Int'>
-  readonly comboId: Prisma.FieldRef<"Pedido", 'Int'>
-  readonly quantidade: Prisma.FieldRef<"Pedido", 'Int'>
+  readonly qtInteira: Prisma.FieldRef<"Pedido", 'Int'>
+  readonly qtMeia: Prisma.FieldRef<"Pedido", 'Int'>
+  readonly valorTotal: Prisma.FieldRef<"Pedido", 'Float'>
+  readonly dataHora: Prisma.FieldRef<"Pedido", 'DateTime'>
 }
     
 
@@ -1309,10 +1290,6 @@ export type PedidoCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    */
   data: Prisma.PedidoCreateManyInput | Prisma.PedidoCreateManyInput[]
   skipDuplicates?: boolean
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PedidoIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1383,10 +1360,6 @@ export type PedidoUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    * Limit how many Pedidos to update.
    */
   limit?: number
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PedidoIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1453,6 +1426,54 @@ export type PedidoDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Limit how many Pedidos to delete.
    */
   limit?: number
+}
+
+/**
+ * Pedido.ingressos
+ */
+export type Pedido$ingressosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Ingresso
+   */
+  select?: Prisma.IngressoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Ingresso
+   */
+  omit?: Prisma.IngressoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.IngressoInclude<ExtArgs> | null
+  where?: Prisma.IngressoWhereInput
+  orderBy?: Prisma.IngressoOrderByWithRelationInput | Prisma.IngressoOrderByWithRelationInput[]
+  cursor?: Prisma.IngressoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.IngressoScalarFieldEnum | Prisma.IngressoScalarFieldEnum[]
+}
+
+/**
+ * Pedido.lanches
+ */
+export type Pedido$lanchesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LancheCombo
+   */
+  select?: Prisma.LancheComboSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LancheCombo
+   */
+  omit?: Prisma.LancheComboOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LancheComboInclude<ExtArgs> | null
+  where?: Prisma.LancheComboWhereInput
+  orderBy?: Prisma.LancheComboOrderByWithRelationInput | Prisma.LancheComboOrderByWithRelationInput[]
+  cursor?: Prisma.LancheComboWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LancheComboScalarFieldEnum | Prisma.LancheComboScalarFieldEnum[]
 }
 
 /**

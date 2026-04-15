@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -15,11 +12,10 @@ datasource db {
 }
 
 model Cinema {
-  id          Int      @id @default(autoincrement()) // O diagrama pede 'long', no Prisma 'Int' ou 'BigInt' atendem bem.
+  id          Int      @id @default(autoincrement())
   nome        String
-  endereco    String   // Corrigi o erro de digitação da imagem ("enderco")
+  endereco    String   
   
-  // Relacionamentos vindos do losango preto (Composição/Agregação)
   listaSalas  Sala[]
   listaFilmes Filme[]
   listaSessao Sessao[]
@@ -29,36 +25,38 @@ model Cinema {
 
 model Sala {
   id          Int      @id @default(autoincrement())
-  numero      Int
+  numero      Int      @unique
   capacidade  Int
   poltronas   Json     // aqui um JSON de matriz (ex: [[1,0],[1,1]])
   
-  // Relacionamento com Cinema
   cinemaId    Int?
   cinema      Cinema?  @relation(fields: [cinemaId], references: [id], onDelete: Cascade)
   
-  // Relacionamento com Sessão
   sessoes     Sessao[]
 
   @@map("salas")
 }
 
-// Enum para o Gênero do filme
-enum Genero {
-  ACAO
-  COMEDIA
-  DRAMA
-  TERROR
-  FICCAO
+model Genero {
+  id          Int      @id @default(autoincrement())
+  nome        String   @unique
+
+  filmes      Filme[]
+
+  @@map("generos")
 }
+
 model Filme {
   id                  Int       @id @default(autoincrement())
   titulo              String
   sinopse             String?   @db.Text
-  classificacao       String
-  duracao             DateTime  // O diagrama pede Date. (Obs: Para duração, 'Int' em minutos costuma ser melhor, mas mantive fiel à imagem).
+  classificacaoEtaria String
+  duracao             Int       // Duração em minutos
   elenco              String?   @db.Text
-  genero              Genero    // Alterado para usar o Enum conforme a imagem
+
+  generoId            Int
+  genero              Genero    @relation(fields: [generoId], references: [id])
+  
   dataInicialExibicao DateTime  @db.Date
   dataFinalExibicao   DateTime  @db.Date
   
@@ -72,9 +70,10 @@ model Filme {
 
 model Sessao {
   id               Int      @id @default(autoincrement())
-  horarioExibicao  DateTime 
-  filmeId          Int
+  data             DateTime 
+  valorIngresso    Float
 
+  filmeId          Int
   filme            Filme    @relation(fields: [filmeId], references: [id], onDelete: Cascade)
   
   salaId           Int
@@ -90,47 +89,40 @@ model Sessao {
 
 model Ingresso {
   id           Int      @id @default(autoincrement())
-  tipo         TipoIngresso
-  valorInteira Float    
-  valorMeia    Float
+  tipo         String   // "Inteira", "Meia", etc
+  valorPago    Float    
   
   sessaoId     Int
   sessao       Sessao   @relation(fields: [sessaoId], references: [id], onDelete: Cascade)
   
   pedidoId     Int?
-  pedido       Pedido?  @relation(fields: [pedidoId], references: [id])
+  pedido       Pedido?  @relation(fields: [pedidoId], references: [id], onDelete: Cascade)
 
   @@map("ingressos")
 }
 
-enum TipoIngresso {
-  INTEIRA
-  MEIA
-}
 
 model LancheCombo {
   id            Int      @id @default(autoincrement())
   nome          String
   descricao     String?  @db.Text
-  valorUnitario Float
+  preco         Float
   qtUnidade     Int
   subtotal      Float
   
-  // Para atrelar ao Pedido 
   pedidoId      Int?
-  pedido        Pedido?  @relation(fields: [pedidoId], references: [id])
+  pedido        Pedido?  @relation(fields: [pedidoId], references: [id], onDelete: Cascade)
 
   @@map("lanches_combos")
 }
 
-// Tabela pivô para associar Lanches a Ingressos
 model Pedido {
   id         Int           @id @default(autoincrement())
   qtInteira  Int
   qtMeia     Int
   valorTotal Float
+  dataHora   DateTime      @default(now())
 
-  // Modelamos com 1:N (Um pedido tem vários ingressos e vários lanches).
   ingressos  Ingresso[]
   lanches    LancheCombo[]
 

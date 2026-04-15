@@ -28,60 +28,76 @@ export type AggregateSala = {
 
 export type SalaAvgAggregateOutputType = {
   id: number | null
+  numero: number | null
   capacidade: number | null
+  cinemaId: number | null
 }
 
 export type SalaSumAggregateOutputType = {
   id: number | null
+  numero: number | null
   capacidade: number | null
+  cinemaId: number | null
 }
 
 export type SalaMinAggregateOutputType = {
   id: number | null
-  nome: string | null
+  numero: number | null
   capacidade: number | null
+  cinemaId: number | null
 }
 
 export type SalaMaxAggregateOutputType = {
   id: number | null
-  nome: string | null
+  numero: number | null
   capacidade: number | null
+  cinemaId: number | null
 }
 
 export type SalaCountAggregateOutputType = {
   id: number
-  nome: number
+  numero: number
   capacidade: number
+  poltronas: number
+  cinemaId: number
   _all: number
 }
 
 
 export type SalaAvgAggregateInputType = {
   id?: true
+  numero?: true
   capacidade?: true
+  cinemaId?: true
 }
 
 export type SalaSumAggregateInputType = {
   id?: true
+  numero?: true
   capacidade?: true
+  cinemaId?: true
 }
 
 export type SalaMinAggregateInputType = {
   id?: true
-  nome?: true
+  numero?: true
   capacidade?: true
+  cinemaId?: true
 }
 
 export type SalaMaxAggregateInputType = {
   id?: true
-  nome?: true
+  numero?: true
   capacidade?: true
+  cinemaId?: true
 }
 
 export type SalaCountAggregateInputType = {
   id?: true
-  nome?: true
+  numero?: true
   capacidade?: true
+  poltronas?: true
+  cinemaId?: true
   _all?: true
 }
 
@@ -173,8 +189,10 @@ export type SalaGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type SalaGroupByOutputType = {
   id: number
-  nome: string
+  numero: number
   capacidade: number
+  poltronas: runtime.JsonValue
+  cinemaId: number | null
   _count: SalaCountAggregateOutputType | null
   _avg: SalaAvgAggregateOutputType | null
   _sum: SalaSumAggregateOutputType | null
@@ -202,32 +220,43 @@ export type SalaWhereInput = {
   OR?: Prisma.SalaWhereInput[]
   NOT?: Prisma.SalaWhereInput | Prisma.SalaWhereInput[]
   id?: Prisma.IntFilter<"Sala"> | number
-  nome?: Prisma.StringFilter<"Sala"> | string
+  numero?: Prisma.IntFilter<"Sala"> | number
   capacidade?: Prisma.IntFilter<"Sala"> | number
+  poltronas?: Prisma.JsonFilter<"Sala">
+  cinemaId?: Prisma.IntNullableFilter<"Sala"> | number | null
+  cinema?: Prisma.XOR<Prisma.CinemaNullableScalarRelationFilter, Prisma.CinemaWhereInput> | null
   sessoes?: Prisma.SessaoListRelationFilter
 }
 
 export type SalaOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  nome?: Prisma.SortOrder
+  numero?: Prisma.SortOrder
   capacidade?: Prisma.SortOrder
+  poltronas?: Prisma.SortOrder
+  cinemaId?: Prisma.SortOrderInput | Prisma.SortOrder
+  cinema?: Prisma.CinemaOrderByWithRelationInput
   sessoes?: Prisma.SessaoOrderByRelationAggregateInput
 }
 
 export type SalaWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  numero?: number
   AND?: Prisma.SalaWhereInput | Prisma.SalaWhereInput[]
   OR?: Prisma.SalaWhereInput[]
   NOT?: Prisma.SalaWhereInput | Prisma.SalaWhereInput[]
-  nome?: Prisma.StringFilter<"Sala"> | string
   capacidade?: Prisma.IntFilter<"Sala"> | number
+  poltronas?: Prisma.JsonFilter<"Sala">
+  cinemaId?: Prisma.IntNullableFilter<"Sala"> | number | null
+  cinema?: Prisma.XOR<Prisma.CinemaNullableScalarRelationFilter, Prisma.CinemaWhereInput> | null
   sessoes?: Prisma.SessaoListRelationFilter
-}, "id">
+}, "id" | "numero">
 
 export type SalaOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  nome?: Prisma.SortOrder
+  numero?: Prisma.SortOrder
   capacidade?: Prisma.SortOrder
+  poltronas?: Prisma.SortOrder
+  cinemaId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.SalaCountOrderByAggregateInput
   _avg?: Prisma.SalaAvgOrderByAggregateInput
   _max?: Prisma.SalaMaxOrderByAggregateInput
@@ -240,84 +269,167 @@ export type SalaScalarWhereWithAggregatesInput = {
   OR?: Prisma.SalaScalarWhereWithAggregatesInput[]
   NOT?: Prisma.SalaScalarWhereWithAggregatesInput | Prisma.SalaScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Sala"> | number
-  nome?: Prisma.StringWithAggregatesFilter<"Sala"> | string
+  numero?: Prisma.IntWithAggregatesFilter<"Sala"> | number
   capacidade?: Prisma.IntWithAggregatesFilter<"Sala"> | number
+  poltronas?: Prisma.JsonWithAggregatesFilter<"Sala">
+  cinemaId?: Prisma.IntNullableWithAggregatesFilter<"Sala"> | number | null
 }
 
 export type SalaCreateInput = {
-  nome: string
+  numero: number
   capacidade: number
+  poltronas: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cinema?: Prisma.CinemaCreateNestedOneWithoutListaSalasInput
   sessoes?: Prisma.SessaoCreateNestedManyWithoutSalaInput
 }
 
 export type SalaUncheckedCreateInput = {
   id?: number
-  nome: string
+  numero: number
   capacidade: number
+  poltronas: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cinemaId?: number | null
   sessoes?: Prisma.SessaoUncheckedCreateNestedManyWithoutSalaInput
 }
 
 export type SalaUpdateInput = {
-  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.IntFieldUpdateOperationsInput | number
   capacidade?: Prisma.IntFieldUpdateOperationsInput | number
+  poltronas?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cinema?: Prisma.CinemaUpdateOneWithoutListaSalasNestedInput
   sessoes?: Prisma.SessaoUpdateManyWithoutSalaNestedInput
 }
 
 export type SalaUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.IntFieldUpdateOperationsInput | number
   capacidade?: Prisma.IntFieldUpdateOperationsInput | number
+  poltronas?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cinemaId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sessoes?: Prisma.SessaoUncheckedUpdateManyWithoutSalaNestedInput
 }
 
 export type SalaCreateManyInput = {
   id?: number
-  nome: string
+  numero: number
   capacidade: number
+  poltronas: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cinemaId?: number | null
 }
 
 export type SalaUpdateManyMutationInput = {
-  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.IntFieldUpdateOperationsInput | number
   capacidade?: Prisma.IntFieldUpdateOperationsInput | number
+  poltronas?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
 export type SalaUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.IntFieldUpdateOperationsInput | number
   capacidade?: Prisma.IntFieldUpdateOperationsInput | number
+  poltronas?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cinemaId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+}
+
+export type SalaListRelationFilter = {
+  every?: Prisma.SalaWhereInput
+  some?: Prisma.SalaWhereInput
+  none?: Prisma.SalaWhereInput
+}
+
+export type SalaOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type SalaCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  nome?: Prisma.SortOrder
+  numero?: Prisma.SortOrder
   capacidade?: Prisma.SortOrder
+  poltronas?: Prisma.SortOrder
+  cinemaId?: Prisma.SortOrder
 }
 
 export type SalaAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  numero?: Prisma.SortOrder
   capacidade?: Prisma.SortOrder
+  cinemaId?: Prisma.SortOrder
 }
 
 export type SalaMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  nome?: Prisma.SortOrder
+  numero?: Prisma.SortOrder
   capacidade?: Prisma.SortOrder
+  cinemaId?: Prisma.SortOrder
 }
 
 export type SalaMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  nome?: Prisma.SortOrder
+  numero?: Prisma.SortOrder
   capacidade?: Prisma.SortOrder
+  cinemaId?: Prisma.SortOrder
 }
 
 export type SalaSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  numero?: Prisma.SortOrder
   capacidade?: Prisma.SortOrder
+  cinemaId?: Prisma.SortOrder
 }
 
 export type SalaScalarRelationFilter = {
   is?: Prisma.SalaWhereInput
   isNot?: Prisma.SalaWhereInput
+}
+
+export type SalaCreateNestedManyWithoutCinemaInput = {
+  create?: Prisma.XOR<Prisma.SalaCreateWithoutCinemaInput, Prisma.SalaUncheckedCreateWithoutCinemaInput> | Prisma.SalaCreateWithoutCinemaInput[] | Prisma.SalaUncheckedCreateWithoutCinemaInput[]
+  connectOrCreate?: Prisma.SalaCreateOrConnectWithoutCinemaInput | Prisma.SalaCreateOrConnectWithoutCinemaInput[]
+  createMany?: Prisma.SalaCreateManyCinemaInputEnvelope
+  connect?: Prisma.SalaWhereUniqueInput | Prisma.SalaWhereUniqueInput[]
+}
+
+export type SalaUncheckedCreateNestedManyWithoutCinemaInput = {
+  create?: Prisma.XOR<Prisma.SalaCreateWithoutCinemaInput, Prisma.SalaUncheckedCreateWithoutCinemaInput> | Prisma.SalaCreateWithoutCinemaInput[] | Prisma.SalaUncheckedCreateWithoutCinemaInput[]
+  connectOrCreate?: Prisma.SalaCreateOrConnectWithoutCinemaInput | Prisma.SalaCreateOrConnectWithoutCinemaInput[]
+  createMany?: Prisma.SalaCreateManyCinemaInputEnvelope
+  connect?: Prisma.SalaWhereUniqueInput | Prisma.SalaWhereUniqueInput[]
+}
+
+export type SalaUpdateManyWithoutCinemaNestedInput = {
+  create?: Prisma.XOR<Prisma.SalaCreateWithoutCinemaInput, Prisma.SalaUncheckedCreateWithoutCinemaInput> | Prisma.SalaCreateWithoutCinemaInput[] | Prisma.SalaUncheckedCreateWithoutCinemaInput[]
+  connectOrCreate?: Prisma.SalaCreateOrConnectWithoutCinemaInput | Prisma.SalaCreateOrConnectWithoutCinemaInput[]
+  upsert?: Prisma.SalaUpsertWithWhereUniqueWithoutCinemaInput | Prisma.SalaUpsertWithWhereUniqueWithoutCinemaInput[]
+  createMany?: Prisma.SalaCreateManyCinemaInputEnvelope
+  set?: Prisma.SalaWhereUniqueInput | Prisma.SalaWhereUniqueInput[]
+  disconnect?: Prisma.SalaWhereUniqueInput | Prisma.SalaWhereUniqueInput[]
+  delete?: Prisma.SalaWhereUniqueInput | Prisma.SalaWhereUniqueInput[]
+  connect?: Prisma.SalaWhereUniqueInput | Prisma.SalaWhereUniqueInput[]
+  update?: Prisma.SalaUpdateWithWhereUniqueWithoutCinemaInput | Prisma.SalaUpdateWithWhereUniqueWithoutCinemaInput[]
+  updateMany?: Prisma.SalaUpdateManyWithWhereWithoutCinemaInput | Prisma.SalaUpdateManyWithWhereWithoutCinemaInput[]
+  deleteMany?: Prisma.SalaScalarWhereInput | Prisma.SalaScalarWhereInput[]
+}
+
+export type SalaUncheckedUpdateManyWithoutCinemaNestedInput = {
+  create?: Prisma.XOR<Prisma.SalaCreateWithoutCinemaInput, Prisma.SalaUncheckedCreateWithoutCinemaInput> | Prisma.SalaCreateWithoutCinemaInput[] | Prisma.SalaUncheckedCreateWithoutCinemaInput[]
+  connectOrCreate?: Prisma.SalaCreateOrConnectWithoutCinemaInput | Prisma.SalaCreateOrConnectWithoutCinemaInput[]
+  upsert?: Prisma.SalaUpsertWithWhereUniqueWithoutCinemaInput | Prisma.SalaUpsertWithWhereUniqueWithoutCinemaInput[]
+  createMany?: Prisma.SalaCreateManyCinemaInputEnvelope
+  set?: Prisma.SalaWhereUniqueInput | Prisma.SalaWhereUniqueInput[]
+  disconnect?: Prisma.SalaWhereUniqueInput | Prisma.SalaWhereUniqueInput[]
+  delete?: Prisma.SalaWhereUniqueInput | Prisma.SalaWhereUniqueInput[]
+  connect?: Prisma.SalaWhereUniqueInput | Prisma.SalaWhereUniqueInput[]
+  update?: Prisma.SalaUpdateWithWhereUniqueWithoutCinemaInput | Prisma.SalaUpdateWithWhereUniqueWithoutCinemaInput[]
+  updateMany?: Prisma.SalaUpdateManyWithWhereWithoutCinemaInput | Prisma.SalaUpdateManyWithWhereWithoutCinemaInput[]
+  deleteMany?: Prisma.SalaScalarWhereInput | Prisma.SalaScalarWhereInput[]
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type SalaCreateNestedOneWithoutSessoesInput = {
@@ -334,15 +446,71 @@ export type SalaUpdateOneRequiredWithoutSessoesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SalaUpdateToOneWithWhereWithoutSessoesInput, Prisma.SalaUpdateWithoutSessoesInput>, Prisma.SalaUncheckedUpdateWithoutSessoesInput>
 }
 
-export type SalaCreateWithoutSessoesInput = {
-  nome: string
+export type SalaCreateWithoutCinemaInput = {
+  numero: number
   capacidade: number
+  poltronas: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  sessoes?: Prisma.SessaoCreateNestedManyWithoutSalaInput
+}
+
+export type SalaUncheckedCreateWithoutCinemaInput = {
+  id?: number
+  numero: number
+  capacidade: number
+  poltronas: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  sessoes?: Prisma.SessaoUncheckedCreateNestedManyWithoutSalaInput
+}
+
+export type SalaCreateOrConnectWithoutCinemaInput = {
+  where: Prisma.SalaWhereUniqueInput
+  create: Prisma.XOR<Prisma.SalaCreateWithoutCinemaInput, Prisma.SalaUncheckedCreateWithoutCinemaInput>
+}
+
+export type SalaCreateManyCinemaInputEnvelope = {
+  data: Prisma.SalaCreateManyCinemaInput | Prisma.SalaCreateManyCinemaInput[]
+  skipDuplicates?: boolean
+}
+
+export type SalaUpsertWithWhereUniqueWithoutCinemaInput = {
+  where: Prisma.SalaWhereUniqueInput
+  update: Prisma.XOR<Prisma.SalaUpdateWithoutCinemaInput, Prisma.SalaUncheckedUpdateWithoutCinemaInput>
+  create: Prisma.XOR<Prisma.SalaCreateWithoutCinemaInput, Prisma.SalaUncheckedCreateWithoutCinemaInput>
+}
+
+export type SalaUpdateWithWhereUniqueWithoutCinemaInput = {
+  where: Prisma.SalaWhereUniqueInput
+  data: Prisma.XOR<Prisma.SalaUpdateWithoutCinemaInput, Prisma.SalaUncheckedUpdateWithoutCinemaInput>
+}
+
+export type SalaUpdateManyWithWhereWithoutCinemaInput = {
+  where: Prisma.SalaScalarWhereInput
+  data: Prisma.XOR<Prisma.SalaUpdateManyMutationInput, Prisma.SalaUncheckedUpdateManyWithoutCinemaInput>
+}
+
+export type SalaScalarWhereInput = {
+  AND?: Prisma.SalaScalarWhereInput | Prisma.SalaScalarWhereInput[]
+  OR?: Prisma.SalaScalarWhereInput[]
+  NOT?: Prisma.SalaScalarWhereInput | Prisma.SalaScalarWhereInput[]
+  id?: Prisma.IntFilter<"Sala"> | number
+  numero?: Prisma.IntFilter<"Sala"> | number
+  capacidade?: Prisma.IntFilter<"Sala"> | number
+  poltronas?: Prisma.JsonFilter<"Sala">
+  cinemaId?: Prisma.IntNullableFilter<"Sala"> | number | null
+}
+
+export type SalaCreateWithoutSessoesInput = {
+  numero: number
+  capacidade: number
+  poltronas: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cinema?: Prisma.CinemaCreateNestedOneWithoutListaSalasInput
 }
 
 export type SalaUncheckedCreateWithoutSessoesInput = {
   id?: number
-  nome: string
+  numero: number
   capacidade: number
+  poltronas: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cinemaId?: number | null
 }
 
 export type SalaCreateOrConnectWithoutSessoesInput = {
@@ -362,14 +530,47 @@ export type SalaUpdateToOneWithWhereWithoutSessoesInput = {
 }
 
 export type SalaUpdateWithoutSessoesInput = {
-  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.IntFieldUpdateOperationsInput | number
   capacidade?: Prisma.IntFieldUpdateOperationsInput | number
+  poltronas?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cinema?: Prisma.CinemaUpdateOneWithoutListaSalasNestedInput
 }
 
 export type SalaUncheckedUpdateWithoutSessoesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.IntFieldUpdateOperationsInput | number
   capacidade?: Prisma.IntFieldUpdateOperationsInput | number
+  poltronas?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cinemaId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+}
+
+export type SalaCreateManyCinemaInput = {
+  id?: number
+  numero: number
+  capacidade: number
+  poltronas: Prisma.JsonNullValueInput | runtime.InputJsonValue
+}
+
+export type SalaUpdateWithoutCinemaInput = {
+  numero?: Prisma.IntFieldUpdateOperationsInput | number
+  capacidade?: Prisma.IntFieldUpdateOperationsInput | number
+  poltronas?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  sessoes?: Prisma.SessaoUpdateManyWithoutSalaNestedInput
+}
+
+export type SalaUncheckedUpdateWithoutCinemaInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  numero?: Prisma.IntFieldUpdateOperationsInput | number
+  capacidade?: Prisma.IntFieldUpdateOperationsInput | number
+  poltronas?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  sessoes?: Prisma.SessaoUncheckedUpdateManyWithoutSalaNestedInput
+}
+
+export type SalaUncheckedUpdateManyWithoutCinemaInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  numero?: Prisma.IntFieldUpdateOperationsInput | number
+  capacidade?: Prisma.IntFieldUpdateOperationsInput | number
+  poltronas?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
 
@@ -405,47 +606,66 @@ export type SalaCountOutputTypeCountSessoesArgs<ExtArgs extends runtime.Types.Ex
 
 export type SalaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  nome?: boolean
+  numero?: boolean
   capacidade?: boolean
+  poltronas?: boolean
+  cinemaId?: boolean
+  cinema?: boolean | Prisma.Sala$cinemaArgs<ExtArgs>
   sessoes?: boolean | Prisma.Sala$sessoesArgs<ExtArgs>
   _count?: boolean | Prisma.SalaCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["sala"]>
 
 export type SalaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  nome?: boolean
+  numero?: boolean
   capacidade?: boolean
+  poltronas?: boolean
+  cinemaId?: boolean
+  cinema?: boolean | Prisma.Sala$cinemaArgs<ExtArgs>
 }, ExtArgs["result"]["sala"]>
 
 export type SalaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  nome?: boolean
+  numero?: boolean
   capacidade?: boolean
+  poltronas?: boolean
+  cinemaId?: boolean
+  cinema?: boolean | Prisma.Sala$cinemaArgs<ExtArgs>
 }, ExtArgs["result"]["sala"]>
 
 export type SalaSelectScalar = {
   id?: boolean
-  nome?: boolean
+  numero?: boolean
   capacidade?: boolean
+  poltronas?: boolean
+  cinemaId?: boolean
 }
 
-export type SalaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "capacidade", ExtArgs["result"]["sala"]>
+export type SalaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "numero" | "capacidade" | "poltronas" | "cinemaId", ExtArgs["result"]["sala"]>
 export type SalaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  cinema?: boolean | Prisma.Sala$cinemaArgs<ExtArgs>
   sessoes?: boolean | Prisma.Sala$sessoesArgs<ExtArgs>
   _count?: boolean | Prisma.SalaCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type SalaIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type SalaIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type SalaIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  cinema?: boolean | Prisma.Sala$cinemaArgs<ExtArgs>
+}
+export type SalaIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  cinema?: boolean | Prisma.Sala$cinemaArgs<ExtArgs>
+}
 
 export type $SalaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Sala"
   objects: {
+    cinema: Prisma.$CinemaPayload<ExtArgs> | null
     sessoes: Prisma.$SessaoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    nome: string
+    numero: number
     capacidade: number
+    poltronas: runtime.JsonValue
+    cinemaId: number | null
   }, ExtArgs["result"]["sala"]>
   composites: {}
 }
@@ -840,6 +1060,7 @@ readonly fields: SalaFieldRefs;
  */
 export interface Prisma__SalaClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  cinema<T extends Prisma.Sala$cinemaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Sala$cinemaArgs<ExtArgs>>): Prisma.Prisma__CinemaClient<runtime.Types.Result.GetResult<Prisma.$CinemaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   sessoes<T extends Prisma.Sala$sessoesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Sala$sessoesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessaoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -871,8 +1092,10 @@ export interface Prisma__SalaClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface SalaFieldRefs {
   readonly id: Prisma.FieldRef<"Sala", 'Int'>
-  readonly nome: Prisma.FieldRef<"Sala", 'String'>
+  readonly numero: Prisma.FieldRef<"Sala", 'Int'>
   readonly capacidade: Prisma.FieldRef<"Sala", 'Int'>
+  readonly poltronas: Prisma.FieldRef<"Sala", 'Json'>
+  readonly cinemaId: Prisma.FieldRef<"Sala", 'Int'>
 }
     
 
@@ -1122,6 +1345,10 @@ export type SalaCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    */
   data: Prisma.SalaCreateManyInput | Prisma.SalaCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SalaIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1192,6 +1419,10 @@ export type SalaUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many Salas to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SalaIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1258,6 +1489,25 @@ export type SalaDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many Salas to delete.
    */
   limit?: number
+}
+
+/**
+ * Sala.cinema
+ */
+export type Sala$cinemaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Cinema
+   */
+  select?: Prisma.CinemaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Cinema
+   */
+  omit?: Prisma.CinemaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CinemaInclude<ExtArgs> | null
+  where?: Prisma.CinemaWhereInput
 }
 
 /**

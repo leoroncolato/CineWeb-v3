@@ -384,8 +384,10 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  Filme: 'Filme',
+  Cinema: 'Cinema',
   Sala: 'Sala',
+  Genero: 'Genero',
+  Filme: 'Filme',
   Sessao: 'Sessao',
   Ingresso: 'Ingresso',
   LancheCombo: 'LancheCombo',
@@ -405,81 +407,81 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "filme" | "sala" | "sessao" | "ingresso" | "lancheCombo" | "pedido"
+    modelProps: "cinema" | "sala" | "genero" | "filme" | "sessao" | "ingresso" | "lancheCombo" | "pedido"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
-    Filme: {
-      payload: Prisma.$FilmePayload<ExtArgs>
-      fields: Prisma.FilmeFieldRefs
+    Cinema: {
+      payload: Prisma.$CinemaPayload<ExtArgs>
+      fields: Prisma.CinemaFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.FilmeFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload> | null
+          args: Prisma.CinemaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CinemaPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.FilmeFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload>
+          args: Prisma.CinemaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CinemaPayload>
         }
         findFirst: {
-          args: Prisma.FilmeFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload> | null
+          args: Prisma.CinemaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CinemaPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.FilmeFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload>
+          args: Prisma.CinemaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CinemaPayload>
         }
         findMany: {
-          args: Prisma.FilmeFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload>[]
+          args: Prisma.CinemaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CinemaPayload>[]
         }
         create: {
-          args: Prisma.FilmeCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload>
+          args: Prisma.CinemaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CinemaPayload>
         }
         createMany: {
-          args: Prisma.FilmeCreateManyArgs<ExtArgs>
+          args: Prisma.CinemaCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.FilmeCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload>[]
+          args: Prisma.CinemaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CinemaPayload>[]
         }
         delete: {
-          args: Prisma.FilmeDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload>
+          args: Prisma.CinemaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CinemaPayload>
         }
         update: {
-          args: Prisma.FilmeUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload>
+          args: Prisma.CinemaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CinemaPayload>
         }
         deleteMany: {
-          args: Prisma.FilmeDeleteManyArgs<ExtArgs>
+          args: Prisma.CinemaDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.FilmeUpdateManyArgs<ExtArgs>
+          args: Prisma.CinemaUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.FilmeUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload>[]
+          args: Prisma.CinemaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CinemaPayload>[]
         }
         upsert: {
-          args: Prisma.FilmeUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload>
+          args: Prisma.CinemaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CinemaPayload>
         }
         aggregate: {
-          args: Prisma.FilmeAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateFilme>
+          args: Prisma.CinemaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCinema>
         }
         groupBy: {
-          args: Prisma.FilmeGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.FilmeGroupByOutputType>[]
+          args: Prisma.CinemaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CinemaGroupByOutputType>[]
         }
         count: {
-          args: Prisma.FilmeCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.FilmeCountAggregateOutputType> | number
+          args: Prisma.CinemaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CinemaCountAggregateOutputType> | number
         }
       }
     }
@@ -554,6 +556,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.SalaCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.SalaCountAggregateOutputType> | number
+        }
+      }
+    }
+    Genero: {
+      payload: Prisma.$GeneroPayload<ExtArgs>
+      fields: Prisma.GeneroFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GeneroFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GeneroFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload>
+        }
+        findFirst: {
+          args: Prisma.GeneroFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GeneroFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload>
+        }
+        findMany: {
+          args: Prisma.GeneroFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload>[]
+        }
+        create: {
+          args: Prisma.GeneroCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload>
+        }
+        createMany: {
+          args: Prisma.GeneroCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GeneroCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload>[]
+        }
+        delete: {
+          args: Prisma.GeneroDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload>
+        }
+        update: {
+          args: Prisma.GeneroUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload>
+        }
+        deleteMany: {
+          args: Prisma.GeneroDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GeneroUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GeneroUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload>[]
+        }
+        upsert: {
+          args: Prisma.GeneroUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload>
+        }
+        aggregate: {
+          args: Prisma.GeneroAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGenero>
+        }
+        groupBy: {
+          args: Prisma.GeneroGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GeneroGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GeneroCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GeneroCountAggregateOutputType> | number
+        }
+      }
+    }
+    Filme: {
+      payload: Prisma.$FilmePayload<ExtArgs>
+      fields: Prisma.FilmeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.FilmeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.FilmeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload>
+        }
+        findFirst: {
+          args: Prisma.FilmeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.FilmeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload>
+        }
+        findMany: {
+          args: Prisma.FilmeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload>[]
+        }
+        create: {
+          args: Prisma.FilmeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload>
+        }
+        createMany: {
+          args: Prisma.FilmeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.FilmeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload>[]
+        }
+        delete: {
+          args: Prisma.FilmeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload>
+        }
+        update: {
+          args: Prisma.FilmeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload>
+        }
+        deleteMany: {
+          args: Prisma.FilmeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.FilmeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.FilmeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload>[]
+        }
+        upsert: {
+          args: Prisma.FilmeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FilmePayload>
+        }
+        aggregate: {
+          args: Prisma.FilmeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFilme>
+        }
+        groupBy: {
+          args: Prisma.FilmeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FilmeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.FilmeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FilmeCountAggregateOutputType> | number
         }
       }
     }
@@ -892,37 +1042,57 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const FilmeScalarFieldEnum = {
+export const CinemaScalarFieldEnum = {
   id: 'id',
-  titulo: 'titulo',
-  sinopse: 'sinopse',
-  duracao: 'duracao',
-  genero: 'genero',
-  classificacao: 'classificacao',
-  diretor: 'diretor',
-  dataLancamento: 'dataLancamento',
-  cartazUrl: 'cartazUrl'
+  nome: 'nome',
+  endereco: 'endereco'
 } as const
 
-export type FilmeScalarFieldEnum = (typeof FilmeScalarFieldEnum)[keyof typeof FilmeScalarFieldEnum]
+export type CinemaScalarFieldEnum = (typeof CinemaScalarFieldEnum)[keyof typeof CinemaScalarFieldEnum]
 
 
 export const SalaScalarFieldEnum = {
   id: 'id',
-  nome: 'nome',
-  capacidade: 'capacidade'
+  numero: 'numero',
+  capacidade: 'capacidade',
+  poltronas: 'poltronas',
+  cinemaId: 'cinemaId'
 } as const
 
 export type SalaScalarFieldEnum = (typeof SalaScalarFieldEnum)[keyof typeof SalaScalarFieldEnum]
 
 
+export const GeneroScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome'
+} as const
+
+export type GeneroScalarFieldEnum = (typeof GeneroScalarFieldEnum)[keyof typeof GeneroScalarFieldEnum]
+
+
+export const FilmeScalarFieldEnum = {
+  id: 'id',
+  titulo: 'titulo',
+  sinopse: 'sinopse',
+  classificacaoEtaria: 'classificacaoEtaria',
+  duracao: 'duracao',
+  elenco: 'elenco',
+  generoId: 'generoId',
+  dataInicialExibicao: 'dataInicialExibicao',
+  dataFinalExibicao: 'dataFinalExibicao',
+  cinemaId: 'cinemaId'
+} as const
+
+export type FilmeScalarFieldEnum = (typeof FilmeScalarFieldEnum)[keyof typeof FilmeScalarFieldEnum]
+
+
 export const SessaoScalarFieldEnum = {
   id: 'id',
+  data: 'data',
+  valorIngresso: 'valorIngresso',
   filmeId: 'filmeId',
   salaId: 'salaId',
-  data: 'data',
-  horario: 'horario',
-  valorIngresso: 'valorIngresso'
+  cinemaId: 'cinemaId'
 } as const
 
 export type SessaoScalarFieldEnum = (typeof SessaoScalarFieldEnum)[keyof typeof SessaoScalarFieldEnum]
@@ -930,12 +1100,10 @@ export type SessaoScalarFieldEnum = (typeof SessaoScalarFieldEnum)[keyof typeof 
 
 export const IngressoScalarFieldEnum = {
   id: 'id',
-  sessaoId: 'sessaoId',
-  nomeComprador: 'nomeComprador',
-  tipoIngresso: 'tipoIngresso',
+  tipo: 'tipo',
   valorPago: 'valorPago',
-  dataCompra: 'dataCompra',
-  assento: 'assento'
+  sessaoId: 'sessaoId',
+  pedidoId: 'pedidoId'
 } as const
 
 export type IngressoScalarFieldEnum = (typeof IngressoScalarFieldEnum)[keyof typeof IngressoScalarFieldEnum]
@@ -946,7 +1114,9 @@ export const LancheComboScalarFieldEnum = {
   nome: 'nome',
   descricao: 'descricao',
   preco: 'preco',
-  imagemUrl: 'imagemUrl'
+  qtUnidade: 'qtUnidade',
+  subtotal: 'subtotal',
+  pedidoId: 'pedidoId'
 } as const
 
 export type LancheComboScalarFieldEnum = (typeof LancheComboScalarFieldEnum)[keyof typeof LancheComboScalarFieldEnum]
@@ -954,9 +1124,10 @@ export type LancheComboScalarFieldEnum = (typeof LancheComboScalarFieldEnum)[key
 
 export const PedidoScalarFieldEnum = {
   id: 'id',
-  ingressoId: 'ingressoId',
-  comboId: 'comboId',
-  quantidade: 'quantidade'
+  qtInteira: 'qtInteira',
+  qtMeia: 'qtMeia',
+  valorTotal: 'valorTotal',
+  dataHora: 'dataHora'
 } as const
 
 export type PedidoScalarFieldEnum = (typeof PedidoScalarFieldEnum)[keyof typeof PedidoScalarFieldEnum]
@@ -970,12 +1141,28 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
 export const NullsOrder = {
@@ -1021,6 +1208,20 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+/**
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -1031,34 +1232,6 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-/**
- * Reference to a field of type 'Decimal'
- */
-export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
-    
-
-
-/**
- * Reference to a field of type 'Decimal[]'
- */
-export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
-    
-
-
-/**
- * Reference to a field of type 'TipoIngresso'
- */
-export type EnumTipoIngressoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoIngresso'>
-    
-
-
-/**
- * Reference to a field of type 'TipoIngresso[]'
- */
-export type ListEnumTipoIngressoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoIngresso[]'>
     
 
 
@@ -1170,8 +1343,10 @@ export type PrismaClientOptions = ({
   comments?: runtime.SqlCommenterPlugin[]
 }
 export type GlobalOmitConfig = {
-  filme?: Prisma.FilmeOmit
+  cinema?: Prisma.CinemaOmit
   sala?: Prisma.SalaOmit
+  genero?: Prisma.GeneroOmit
+  filme?: Prisma.FilmeOmit
   sessao?: Prisma.SessaoOmit
   ingresso?: Prisma.IngressoOmit
   lancheCombo?: Prisma.LancheComboOmit
