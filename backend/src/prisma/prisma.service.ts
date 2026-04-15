@@ -12,15 +12,9 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
             throw new Error("DATABASE_URL não esta declarada no .env");
         }
         
-        const url = new URL(databaseURL);
-        const schema = url.searchParams.get('schema') || 'public';
-        url.searchParams.delete('schema');
-        url.searchParams.append('options', `-c search_path=${schema},public`);
-
-        const pool = new Pool({ connectionString: url.toString() });
+        const pool = new Pool({ connectionString: databaseURL });
         const adapter = new PrismaPg(pool);
-
-        // Evitar erro de tipagem restrita do Prisma v7 e inicializar via driver Adapter
+        
         super({ adapter } as any);
     }
 
