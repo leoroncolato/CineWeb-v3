@@ -31,6 +31,7 @@ export type PedidoAvgAggregateOutputType = {
   qtInteira: number | null
   qtMeia: number | null
   valorTotal: number | null
+  usuarioId: number | null
 }
 
 export type PedidoSumAggregateOutputType = {
@@ -38,6 +39,7 @@ export type PedidoSumAggregateOutputType = {
   qtInteira: number | null
   qtMeia: number | null
   valorTotal: number | null
+  usuarioId: number | null
 }
 
 export type PedidoMinAggregateOutputType = {
@@ -46,6 +48,10 @@ export type PedidoMinAggregateOutputType = {
   qtMeia: number | null
   valorTotal: number | null
   dataHora: Date | null
+  formaPagamento: string | null
+  statusPagamento: string | null
+  codigoComprovante: string | null
+  usuarioId: number | null
 }
 
 export type PedidoMaxAggregateOutputType = {
@@ -54,6 +60,10 @@ export type PedidoMaxAggregateOutputType = {
   qtMeia: number | null
   valorTotal: number | null
   dataHora: Date | null
+  formaPagamento: string | null
+  statusPagamento: string | null
+  codigoComprovante: string | null
+  usuarioId: number | null
 }
 
 export type PedidoCountAggregateOutputType = {
@@ -62,6 +72,11 @@ export type PedidoCountAggregateOutputType = {
   qtMeia: number
   valorTotal: number
   dataHora: number
+  formaPagamento: number
+  statusPagamento: number
+  codigoComprovante: number
+  combos: number
+  usuarioId: number
   _all: number
 }
 
@@ -71,6 +86,7 @@ export type PedidoAvgAggregateInputType = {
   qtInteira?: true
   qtMeia?: true
   valorTotal?: true
+  usuarioId?: true
 }
 
 export type PedidoSumAggregateInputType = {
@@ -78,6 +94,7 @@ export type PedidoSumAggregateInputType = {
   qtInteira?: true
   qtMeia?: true
   valorTotal?: true
+  usuarioId?: true
 }
 
 export type PedidoMinAggregateInputType = {
@@ -86,6 +103,10 @@ export type PedidoMinAggregateInputType = {
   qtMeia?: true
   valorTotal?: true
   dataHora?: true
+  formaPagamento?: true
+  statusPagamento?: true
+  codigoComprovante?: true
+  usuarioId?: true
 }
 
 export type PedidoMaxAggregateInputType = {
@@ -94,6 +115,10 @@ export type PedidoMaxAggregateInputType = {
   qtMeia?: true
   valorTotal?: true
   dataHora?: true
+  formaPagamento?: true
+  statusPagamento?: true
+  codigoComprovante?: true
+  usuarioId?: true
 }
 
 export type PedidoCountAggregateInputType = {
@@ -102,6 +127,11 @@ export type PedidoCountAggregateInputType = {
   qtMeia?: true
   valorTotal?: true
   dataHora?: true
+  formaPagamento?: true
+  statusPagamento?: true
+  codigoComprovante?: true
+  combos?: true
+  usuarioId?: true
   _all?: true
 }
 
@@ -197,6 +227,11 @@ export type PedidoGroupByOutputType = {
   qtMeia: number
   valorTotal: number
   dataHora: Date
+  formaPagamento: string | null
+  statusPagamento: string
+  codigoComprovante: string
+  combos: runtime.JsonValue | null
+  usuarioId: number | null
   _count: PedidoCountAggregateOutputType | null
   _avg: PedidoAvgAggregateOutputType | null
   _sum: PedidoSumAggregateOutputType | null
@@ -228,6 +263,12 @@ export type PedidoWhereInput = {
   qtMeia?: Prisma.IntFilter<"Pedido"> | number
   valorTotal?: Prisma.FloatFilter<"Pedido"> | number
   dataHora?: Prisma.DateTimeFilter<"Pedido"> | Date | string
+  formaPagamento?: Prisma.StringNullableFilter<"Pedido"> | string | null
+  statusPagamento?: Prisma.StringFilter<"Pedido"> | string
+  codigoComprovante?: Prisma.StringFilter<"Pedido"> | string
+  combos?: Prisma.JsonNullableFilter<"Pedido">
+  usuarioId?: Prisma.IntNullableFilter<"Pedido"> | number | null
+  usuario?: Prisma.XOR<Prisma.UsuarioNullableScalarRelationFilter, Prisma.UsuarioWhereInput> | null
   ingressos?: Prisma.IngressoListRelationFilter
   lanches?: Prisma.LancheComboListRelationFilter
 }
@@ -238,12 +279,19 @@ export type PedidoOrderByWithRelationInput = {
   qtMeia?: Prisma.SortOrder
   valorTotal?: Prisma.SortOrder
   dataHora?: Prisma.SortOrder
+  formaPagamento?: Prisma.SortOrderInput | Prisma.SortOrder
+  statusPagamento?: Prisma.SortOrder
+  codigoComprovante?: Prisma.SortOrder
+  combos?: Prisma.SortOrderInput | Prisma.SortOrder
+  usuarioId?: Prisma.SortOrderInput | Prisma.SortOrder
+  usuario?: Prisma.UsuarioOrderByWithRelationInput
   ingressos?: Prisma.IngressoOrderByRelationAggregateInput
   lanches?: Prisma.LancheComboOrderByRelationAggregateInput
 }
 
 export type PedidoWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  codigoComprovante?: string
   AND?: Prisma.PedidoWhereInput | Prisma.PedidoWhereInput[]
   OR?: Prisma.PedidoWhereInput[]
   NOT?: Prisma.PedidoWhereInput | Prisma.PedidoWhereInput[]
@@ -251,9 +299,14 @@ export type PedidoWhereUniqueInput = Prisma.AtLeast<{
   qtMeia?: Prisma.IntFilter<"Pedido"> | number
   valorTotal?: Prisma.FloatFilter<"Pedido"> | number
   dataHora?: Prisma.DateTimeFilter<"Pedido"> | Date | string
+  formaPagamento?: Prisma.StringNullableFilter<"Pedido"> | string | null
+  statusPagamento?: Prisma.StringFilter<"Pedido"> | string
+  combos?: Prisma.JsonNullableFilter<"Pedido">
+  usuarioId?: Prisma.IntNullableFilter<"Pedido"> | number | null
+  usuario?: Prisma.XOR<Prisma.UsuarioNullableScalarRelationFilter, Prisma.UsuarioWhereInput> | null
   ingressos?: Prisma.IngressoListRelationFilter
   lanches?: Prisma.LancheComboListRelationFilter
-}, "id">
+}, "id" | "codigoComprovante">
 
 export type PedidoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -261,6 +314,11 @@ export type PedidoOrderByWithAggregationInput = {
   qtMeia?: Prisma.SortOrder
   valorTotal?: Prisma.SortOrder
   dataHora?: Prisma.SortOrder
+  formaPagamento?: Prisma.SortOrderInput | Prisma.SortOrder
+  statusPagamento?: Prisma.SortOrder
+  codigoComprovante?: Prisma.SortOrder
+  combos?: Prisma.SortOrderInput | Prisma.SortOrder
+  usuarioId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.PedidoCountOrderByAggregateInput
   _avg?: Prisma.PedidoAvgOrderByAggregateInput
   _max?: Prisma.PedidoMaxOrderByAggregateInput
@@ -277,6 +335,11 @@ export type PedidoScalarWhereWithAggregatesInput = {
   qtMeia?: Prisma.IntWithAggregatesFilter<"Pedido"> | number
   valorTotal?: Prisma.FloatWithAggregatesFilter<"Pedido"> | number
   dataHora?: Prisma.DateTimeWithAggregatesFilter<"Pedido"> | Date | string
+  formaPagamento?: Prisma.StringNullableWithAggregatesFilter<"Pedido"> | string | null
+  statusPagamento?: Prisma.StringWithAggregatesFilter<"Pedido"> | string
+  codigoComprovante?: Prisma.StringWithAggregatesFilter<"Pedido"> | string
+  combos?: Prisma.JsonNullableWithAggregatesFilter<"Pedido">
+  usuarioId?: Prisma.IntNullableWithAggregatesFilter<"Pedido"> | number | null
 }
 
 export type PedidoCreateInput = {
@@ -284,6 +347,11 @@ export type PedidoCreateInput = {
   qtMeia: number
   valorTotal: number
   dataHora?: Date | string
+  formaPagamento?: string | null
+  statusPagamento?: string
+  codigoComprovante?: string
+  combos?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  usuario?: Prisma.UsuarioCreateNestedOneWithoutPedidosInput
   ingressos?: Prisma.IngressoCreateNestedManyWithoutPedidoInput
   lanches?: Prisma.LancheComboCreateNestedManyWithoutPedidoInput
 }
@@ -294,6 +362,11 @@ export type PedidoUncheckedCreateInput = {
   qtMeia: number
   valorTotal: number
   dataHora?: Date | string
+  formaPagamento?: string | null
+  statusPagamento?: string
+  codigoComprovante?: string
+  combos?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  usuarioId?: number | null
   ingressos?: Prisma.IngressoUncheckedCreateNestedManyWithoutPedidoInput
   lanches?: Prisma.LancheComboUncheckedCreateNestedManyWithoutPedidoInput
 }
@@ -303,6 +376,11 @@ export type PedidoUpdateInput = {
   qtMeia?: Prisma.IntFieldUpdateOperationsInput | number
   valorTotal?: Prisma.FloatFieldUpdateOperationsInput | number
   dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  formaPagamento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  statusPagamento?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoComprovante?: Prisma.StringFieldUpdateOperationsInput | string
+  combos?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  usuario?: Prisma.UsuarioUpdateOneWithoutPedidosNestedInput
   ingressos?: Prisma.IngressoUpdateManyWithoutPedidoNestedInput
   lanches?: Prisma.LancheComboUpdateManyWithoutPedidoNestedInput
 }
@@ -313,6 +391,11 @@ export type PedidoUncheckedUpdateInput = {
   qtMeia?: Prisma.IntFieldUpdateOperationsInput | number
   valorTotal?: Prisma.FloatFieldUpdateOperationsInput | number
   dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  formaPagamento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  statusPagamento?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoComprovante?: Prisma.StringFieldUpdateOperationsInput | string
+  combos?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  usuarioId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   ingressos?: Prisma.IngressoUncheckedUpdateManyWithoutPedidoNestedInput
   lanches?: Prisma.LancheComboUncheckedUpdateManyWithoutPedidoNestedInput
 }
@@ -323,6 +406,11 @@ export type PedidoCreateManyInput = {
   qtMeia: number
   valorTotal: number
   dataHora?: Date | string
+  formaPagamento?: string | null
+  statusPagamento?: string
+  codigoComprovante?: string
+  combos?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  usuarioId?: number | null
 }
 
 export type PedidoUpdateManyMutationInput = {
@@ -330,6 +418,10 @@ export type PedidoUpdateManyMutationInput = {
   qtMeia?: Prisma.IntFieldUpdateOperationsInput | number
   valorTotal?: Prisma.FloatFieldUpdateOperationsInput | number
   dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  formaPagamento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  statusPagamento?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoComprovante?: Prisma.StringFieldUpdateOperationsInput | string
+  combos?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
 }
 
 export type PedidoUncheckedUpdateManyInput = {
@@ -338,6 +430,21 @@ export type PedidoUncheckedUpdateManyInput = {
   qtMeia?: Prisma.IntFieldUpdateOperationsInput | number
   valorTotal?: Prisma.FloatFieldUpdateOperationsInput | number
   dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  formaPagamento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  statusPagamento?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoComprovante?: Prisma.StringFieldUpdateOperationsInput | string
+  combos?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  usuarioId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+}
+
+export type PedidoListRelationFilter = {
+  every?: Prisma.PedidoWhereInput
+  some?: Prisma.PedidoWhereInput
+  none?: Prisma.PedidoWhereInput
+}
+
+export type PedidoOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type PedidoNullableScalarRelationFilter = {
@@ -351,6 +458,11 @@ export type PedidoCountOrderByAggregateInput = {
   qtMeia?: Prisma.SortOrder
   valorTotal?: Prisma.SortOrder
   dataHora?: Prisma.SortOrder
+  formaPagamento?: Prisma.SortOrder
+  statusPagamento?: Prisma.SortOrder
+  codigoComprovante?: Prisma.SortOrder
+  combos?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
 }
 
 export type PedidoAvgOrderByAggregateInput = {
@@ -358,6 +470,7 @@ export type PedidoAvgOrderByAggregateInput = {
   qtInteira?: Prisma.SortOrder
   qtMeia?: Prisma.SortOrder
   valorTotal?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
 }
 
 export type PedidoMaxOrderByAggregateInput = {
@@ -366,6 +479,10 @@ export type PedidoMaxOrderByAggregateInput = {
   qtMeia?: Prisma.SortOrder
   valorTotal?: Prisma.SortOrder
   dataHora?: Prisma.SortOrder
+  formaPagamento?: Prisma.SortOrder
+  statusPagamento?: Prisma.SortOrder
+  codigoComprovante?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
 }
 
 export type PedidoMinOrderByAggregateInput = {
@@ -374,6 +491,10 @@ export type PedidoMinOrderByAggregateInput = {
   qtMeia?: Prisma.SortOrder
   valorTotal?: Prisma.SortOrder
   dataHora?: Prisma.SortOrder
+  formaPagamento?: Prisma.SortOrder
+  statusPagamento?: Prisma.SortOrder
+  codigoComprovante?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
 }
 
 export type PedidoSumOrderByAggregateInput = {
@@ -381,6 +502,49 @@ export type PedidoSumOrderByAggregateInput = {
   qtInteira?: Prisma.SortOrder
   qtMeia?: Prisma.SortOrder
   valorTotal?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
+}
+
+export type PedidoCreateNestedManyWithoutUsuarioInput = {
+  create?: Prisma.XOR<Prisma.PedidoCreateWithoutUsuarioInput, Prisma.PedidoUncheckedCreateWithoutUsuarioInput> | Prisma.PedidoCreateWithoutUsuarioInput[] | Prisma.PedidoUncheckedCreateWithoutUsuarioInput[]
+  connectOrCreate?: Prisma.PedidoCreateOrConnectWithoutUsuarioInput | Prisma.PedidoCreateOrConnectWithoutUsuarioInput[]
+  createMany?: Prisma.PedidoCreateManyUsuarioInputEnvelope
+  connect?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
+}
+
+export type PedidoUncheckedCreateNestedManyWithoutUsuarioInput = {
+  create?: Prisma.XOR<Prisma.PedidoCreateWithoutUsuarioInput, Prisma.PedidoUncheckedCreateWithoutUsuarioInput> | Prisma.PedidoCreateWithoutUsuarioInput[] | Prisma.PedidoUncheckedCreateWithoutUsuarioInput[]
+  connectOrCreate?: Prisma.PedidoCreateOrConnectWithoutUsuarioInput | Prisma.PedidoCreateOrConnectWithoutUsuarioInput[]
+  createMany?: Prisma.PedidoCreateManyUsuarioInputEnvelope
+  connect?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
+}
+
+export type PedidoUpdateManyWithoutUsuarioNestedInput = {
+  create?: Prisma.XOR<Prisma.PedidoCreateWithoutUsuarioInput, Prisma.PedidoUncheckedCreateWithoutUsuarioInput> | Prisma.PedidoCreateWithoutUsuarioInput[] | Prisma.PedidoUncheckedCreateWithoutUsuarioInput[]
+  connectOrCreate?: Prisma.PedidoCreateOrConnectWithoutUsuarioInput | Prisma.PedidoCreateOrConnectWithoutUsuarioInput[]
+  upsert?: Prisma.PedidoUpsertWithWhereUniqueWithoutUsuarioInput | Prisma.PedidoUpsertWithWhereUniqueWithoutUsuarioInput[]
+  createMany?: Prisma.PedidoCreateManyUsuarioInputEnvelope
+  set?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
+  disconnect?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
+  delete?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
+  connect?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
+  update?: Prisma.PedidoUpdateWithWhereUniqueWithoutUsuarioInput | Prisma.PedidoUpdateWithWhereUniqueWithoutUsuarioInput[]
+  updateMany?: Prisma.PedidoUpdateManyWithWhereWithoutUsuarioInput | Prisma.PedidoUpdateManyWithWhereWithoutUsuarioInput[]
+  deleteMany?: Prisma.PedidoScalarWhereInput | Prisma.PedidoScalarWhereInput[]
+}
+
+export type PedidoUncheckedUpdateManyWithoutUsuarioNestedInput = {
+  create?: Prisma.XOR<Prisma.PedidoCreateWithoutUsuarioInput, Prisma.PedidoUncheckedCreateWithoutUsuarioInput> | Prisma.PedidoCreateWithoutUsuarioInput[] | Prisma.PedidoUncheckedCreateWithoutUsuarioInput[]
+  connectOrCreate?: Prisma.PedidoCreateOrConnectWithoutUsuarioInput | Prisma.PedidoCreateOrConnectWithoutUsuarioInput[]
+  upsert?: Prisma.PedidoUpsertWithWhereUniqueWithoutUsuarioInput | Prisma.PedidoUpsertWithWhereUniqueWithoutUsuarioInput[]
+  createMany?: Prisma.PedidoCreateManyUsuarioInputEnvelope
+  set?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
+  disconnect?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
+  delete?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
+  connect?: Prisma.PedidoWhereUniqueInput | Prisma.PedidoWhereUniqueInput[]
+  update?: Prisma.PedidoUpdateWithWhereUniqueWithoutUsuarioInput | Prisma.PedidoUpdateWithWhereUniqueWithoutUsuarioInput[]
+  updateMany?: Prisma.PedidoUpdateManyWithWhereWithoutUsuarioInput | Prisma.PedidoUpdateManyWithWhereWithoutUsuarioInput[]
+  deleteMany?: Prisma.PedidoScalarWhereInput | Prisma.PedidoScalarWhereInput[]
 }
 
 export type PedidoCreateNestedOneWithoutIngressosInput = {
@@ -415,11 +579,85 @@ export type PedidoUpdateOneWithoutLanchesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PedidoUpdateToOneWithWhereWithoutLanchesInput, Prisma.PedidoUpdateWithoutLanchesInput>, Prisma.PedidoUncheckedUpdateWithoutLanchesInput>
 }
 
+export type PedidoCreateWithoutUsuarioInput = {
+  qtInteira: number
+  qtMeia: number
+  valorTotal: number
+  dataHora?: Date | string
+  formaPagamento?: string | null
+  statusPagamento?: string
+  codigoComprovante?: string
+  combos?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  ingressos?: Prisma.IngressoCreateNestedManyWithoutPedidoInput
+  lanches?: Prisma.LancheComboCreateNestedManyWithoutPedidoInput
+}
+
+export type PedidoUncheckedCreateWithoutUsuarioInput = {
+  id?: number
+  qtInteira: number
+  qtMeia: number
+  valorTotal: number
+  dataHora?: Date | string
+  formaPagamento?: string | null
+  statusPagamento?: string
+  codigoComprovante?: string
+  combos?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  ingressos?: Prisma.IngressoUncheckedCreateNestedManyWithoutPedidoInput
+  lanches?: Prisma.LancheComboUncheckedCreateNestedManyWithoutPedidoInput
+}
+
+export type PedidoCreateOrConnectWithoutUsuarioInput = {
+  where: Prisma.PedidoWhereUniqueInput
+  create: Prisma.XOR<Prisma.PedidoCreateWithoutUsuarioInput, Prisma.PedidoUncheckedCreateWithoutUsuarioInput>
+}
+
+export type PedidoCreateManyUsuarioInputEnvelope = {
+  data: Prisma.PedidoCreateManyUsuarioInput | Prisma.PedidoCreateManyUsuarioInput[]
+  skipDuplicates?: boolean
+}
+
+export type PedidoUpsertWithWhereUniqueWithoutUsuarioInput = {
+  where: Prisma.PedidoWhereUniqueInput
+  update: Prisma.XOR<Prisma.PedidoUpdateWithoutUsuarioInput, Prisma.PedidoUncheckedUpdateWithoutUsuarioInput>
+  create: Prisma.XOR<Prisma.PedidoCreateWithoutUsuarioInput, Prisma.PedidoUncheckedCreateWithoutUsuarioInput>
+}
+
+export type PedidoUpdateWithWhereUniqueWithoutUsuarioInput = {
+  where: Prisma.PedidoWhereUniqueInput
+  data: Prisma.XOR<Prisma.PedidoUpdateWithoutUsuarioInput, Prisma.PedidoUncheckedUpdateWithoutUsuarioInput>
+}
+
+export type PedidoUpdateManyWithWhereWithoutUsuarioInput = {
+  where: Prisma.PedidoScalarWhereInput
+  data: Prisma.XOR<Prisma.PedidoUpdateManyMutationInput, Prisma.PedidoUncheckedUpdateManyWithoutUsuarioInput>
+}
+
+export type PedidoScalarWhereInput = {
+  AND?: Prisma.PedidoScalarWhereInput | Prisma.PedidoScalarWhereInput[]
+  OR?: Prisma.PedidoScalarWhereInput[]
+  NOT?: Prisma.PedidoScalarWhereInput | Prisma.PedidoScalarWhereInput[]
+  id?: Prisma.IntFilter<"Pedido"> | number
+  qtInteira?: Prisma.IntFilter<"Pedido"> | number
+  qtMeia?: Prisma.IntFilter<"Pedido"> | number
+  valorTotal?: Prisma.FloatFilter<"Pedido"> | number
+  dataHora?: Prisma.DateTimeFilter<"Pedido"> | Date | string
+  formaPagamento?: Prisma.StringNullableFilter<"Pedido"> | string | null
+  statusPagamento?: Prisma.StringFilter<"Pedido"> | string
+  codigoComprovante?: Prisma.StringFilter<"Pedido"> | string
+  combos?: Prisma.JsonNullableFilter<"Pedido">
+  usuarioId?: Prisma.IntNullableFilter<"Pedido"> | number | null
+}
+
 export type PedidoCreateWithoutIngressosInput = {
   qtInteira: number
   qtMeia: number
   valorTotal: number
   dataHora?: Date | string
+  formaPagamento?: string | null
+  statusPagamento?: string
+  codigoComprovante?: string
+  combos?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  usuario?: Prisma.UsuarioCreateNestedOneWithoutPedidosInput
   lanches?: Prisma.LancheComboCreateNestedManyWithoutPedidoInput
 }
 
@@ -429,6 +667,11 @@ export type PedidoUncheckedCreateWithoutIngressosInput = {
   qtMeia: number
   valorTotal: number
   dataHora?: Date | string
+  formaPagamento?: string | null
+  statusPagamento?: string
+  codigoComprovante?: string
+  combos?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  usuarioId?: number | null
   lanches?: Prisma.LancheComboUncheckedCreateNestedManyWithoutPedidoInput
 }
 
@@ -453,6 +696,11 @@ export type PedidoUpdateWithoutIngressosInput = {
   qtMeia?: Prisma.IntFieldUpdateOperationsInput | number
   valorTotal?: Prisma.FloatFieldUpdateOperationsInput | number
   dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  formaPagamento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  statusPagamento?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoComprovante?: Prisma.StringFieldUpdateOperationsInput | string
+  combos?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  usuario?: Prisma.UsuarioUpdateOneWithoutPedidosNestedInput
   lanches?: Prisma.LancheComboUpdateManyWithoutPedidoNestedInput
 }
 
@@ -462,6 +710,11 @@ export type PedidoUncheckedUpdateWithoutIngressosInput = {
   qtMeia?: Prisma.IntFieldUpdateOperationsInput | number
   valorTotal?: Prisma.FloatFieldUpdateOperationsInput | number
   dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  formaPagamento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  statusPagamento?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoComprovante?: Prisma.StringFieldUpdateOperationsInput | string
+  combos?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  usuarioId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   lanches?: Prisma.LancheComboUncheckedUpdateManyWithoutPedidoNestedInput
 }
 
@@ -470,6 +723,11 @@ export type PedidoCreateWithoutLanchesInput = {
   qtMeia: number
   valorTotal: number
   dataHora?: Date | string
+  formaPagamento?: string | null
+  statusPagamento?: string
+  codigoComprovante?: string
+  combos?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  usuario?: Prisma.UsuarioCreateNestedOneWithoutPedidosInput
   ingressos?: Prisma.IngressoCreateNestedManyWithoutPedidoInput
 }
 
@@ -479,6 +737,11 @@ export type PedidoUncheckedCreateWithoutLanchesInput = {
   qtMeia: number
   valorTotal: number
   dataHora?: Date | string
+  formaPagamento?: string | null
+  statusPagamento?: string
+  codigoComprovante?: string
+  combos?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  usuarioId?: number | null
   ingressos?: Prisma.IngressoUncheckedCreateNestedManyWithoutPedidoInput
 }
 
@@ -503,6 +766,11 @@ export type PedidoUpdateWithoutLanchesInput = {
   qtMeia?: Prisma.IntFieldUpdateOperationsInput | number
   valorTotal?: Prisma.FloatFieldUpdateOperationsInput | number
   dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  formaPagamento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  statusPagamento?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoComprovante?: Prisma.StringFieldUpdateOperationsInput | string
+  combos?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  usuario?: Prisma.UsuarioUpdateOneWithoutPedidosNestedInput
   ingressos?: Prisma.IngressoUpdateManyWithoutPedidoNestedInput
 }
 
@@ -512,7 +780,63 @@ export type PedidoUncheckedUpdateWithoutLanchesInput = {
   qtMeia?: Prisma.IntFieldUpdateOperationsInput | number
   valorTotal?: Prisma.FloatFieldUpdateOperationsInput | number
   dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  formaPagamento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  statusPagamento?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoComprovante?: Prisma.StringFieldUpdateOperationsInput | string
+  combos?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  usuarioId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   ingressos?: Prisma.IngressoUncheckedUpdateManyWithoutPedidoNestedInput
+}
+
+export type PedidoCreateManyUsuarioInput = {
+  id?: number
+  qtInteira: number
+  qtMeia: number
+  valorTotal: number
+  dataHora?: Date | string
+  formaPagamento?: string | null
+  statusPagamento?: string
+  codigoComprovante?: string
+  combos?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+}
+
+export type PedidoUpdateWithoutUsuarioInput = {
+  qtInteira?: Prisma.IntFieldUpdateOperationsInput | number
+  qtMeia?: Prisma.IntFieldUpdateOperationsInput | number
+  valorTotal?: Prisma.FloatFieldUpdateOperationsInput | number
+  dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  formaPagamento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  statusPagamento?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoComprovante?: Prisma.StringFieldUpdateOperationsInput | string
+  combos?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  ingressos?: Prisma.IngressoUpdateManyWithoutPedidoNestedInput
+  lanches?: Prisma.LancheComboUpdateManyWithoutPedidoNestedInput
+}
+
+export type PedidoUncheckedUpdateWithoutUsuarioInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  qtInteira?: Prisma.IntFieldUpdateOperationsInput | number
+  qtMeia?: Prisma.IntFieldUpdateOperationsInput | number
+  valorTotal?: Prisma.FloatFieldUpdateOperationsInput | number
+  dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  formaPagamento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  statusPagamento?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoComprovante?: Prisma.StringFieldUpdateOperationsInput | string
+  combos?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  ingressos?: Prisma.IngressoUncheckedUpdateManyWithoutPedidoNestedInput
+  lanches?: Prisma.LancheComboUncheckedUpdateManyWithoutPedidoNestedInput
+}
+
+export type PedidoUncheckedUpdateManyWithoutUsuarioInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  qtInteira?: Prisma.IntFieldUpdateOperationsInput | number
+  qtMeia?: Prisma.IntFieldUpdateOperationsInput | number
+  valorTotal?: Prisma.FloatFieldUpdateOperationsInput | number
+  dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  formaPagamento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  statusPagamento?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoComprovante?: Prisma.StringFieldUpdateOperationsInput | string
+  combos?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
 }
 
 
@@ -561,6 +885,12 @@ export type PedidoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   qtMeia?: boolean
   valorTotal?: boolean
   dataHora?: boolean
+  formaPagamento?: boolean
+  statusPagamento?: boolean
+  codigoComprovante?: boolean
+  combos?: boolean
+  usuarioId?: boolean
+  usuario?: boolean | Prisma.Pedido$usuarioArgs<ExtArgs>
   ingressos?: boolean | Prisma.Pedido$ingressosArgs<ExtArgs>
   lanches?: boolean | Prisma.Pedido$lanchesArgs<ExtArgs>
   _count?: boolean | Prisma.PedidoCountOutputTypeDefaultArgs<ExtArgs>
@@ -572,6 +902,12 @@ export type PedidoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   qtMeia?: boolean
   valorTotal?: boolean
   dataHora?: boolean
+  formaPagamento?: boolean
+  statusPagamento?: boolean
+  codigoComprovante?: boolean
+  combos?: boolean
+  usuarioId?: boolean
+  usuario?: boolean | Prisma.Pedido$usuarioArgs<ExtArgs>
 }, ExtArgs["result"]["pedido"]>
 
 export type PedidoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -580,6 +916,12 @@ export type PedidoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   qtMeia?: boolean
   valorTotal?: boolean
   dataHora?: boolean
+  formaPagamento?: boolean
+  statusPagamento?: boolean
+  codigoComprovante?: boolean
+  combos?: boolean
+  usuarioId?: boolean
+  usuario?: boolean | Prisma.Pedido$usuarioArgs<ExtArgs>
 }, ExtArgs["result"]["pedido"]>
 
 export type PedidoSelectScalar = {
@@ -588,20 +930,31 @@ export type PedidoSelectScalar = {
   qtMeia?: boolean
   valorTotal?: boolean
   dataHora?: boolean
+  formaPagamento?: boolean
+  statusPagamento?: boolean
+  codigoComprovante?: boolean
+  combos?: boolean
+  usuarioId?: boolean
 }
 
-export type PedidoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "qtInteira" | "qtMeia" | "valorTotal" | "dataHora", ExtArgs["result"]["pedido"]>
+export type PedidoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "qtInteira" | "qtMeia" | "valorTotal" | "dataHora" | "formaPagamento" | "statusPagamento" | "codigoComprovante" | "combos" | "usuarioId", ExtArgs["result"]["pedido"]>
 export type PedidoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  usuario?: boolean | Prisma.Pedido$usuarioArgs<ExtArgs>
   ingressos?: boolean | Prisma.Pedido$ingressosArgs<ExtArgs>
   lanches?: boolean | Prisma.Pedido$lanchesArgs<ExtArgs>
   _count?: boolean | Prisma.PedidoCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type PedidoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type PedidoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type PedidoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  usuario?: boolean | Prisma.Pedido$usuarioArgs<ExtArgs>
+}
+export type PedidoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  usuario?: boolean | Prisma.Pedido$usuarioArgs<ExtArgs>
+}
 
 export type $PedidoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Pedido"
   objects: {
+    usuario: Prisma.$UsuarioPayload<ExtArgs> | null
     ingressos: Prisma.$IngressoPayload<ExtArgs>[]
     lanches: Prisma.$LancheComboPayload<ExtArgs>[]
   }
@@ -611,6 +964,11 @@ export type $PedidoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     qtMeia: number
     valorTotal: number
     dataHora: Date
+    formaPagamento: string | null
+    statusPagamento: string
+    codigoComprovante: string
+    combos: runtime.JsonValue | null
+    usuarioId: number | null
   }, ExtArgs["result"]["pedido"]>
   composites: {}
 }
@@ -1005,6 +1363,7 @@ readonly fields: PedidoFieldRefs;
  */
 export interface Prisma__PedidoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  usuario<T extends Prisma.Pedido$usuarioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pedido$usuarioArgs<ExtArgs>>): Prisma.Prisma__UsuarioClient<runtime.Types.Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   ingressos<T extends Prisma.Pedido$ingressosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pedido$ingressosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IngressoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   lanches<T extends Prisma.Pedido$lanchesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pedido$lanchesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LancheComboPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1041,6 +1400,11 @@ export interface PedidoFieldRefs {
   readonly qtMeia: Prisma.FieldRef<"Pedido", 'Int'>
   readonly valorTotal: Prisma.FieldRef<"Pedido", 'Float'>
   readonly dataHora: Prisma.FieldRef<"Pedido", 'DateTime'>
+  readonly formaPagamento: Prisma.FieldRef<"Pedido", 'String'>
+  readonly statusPagamento: Prisma.FieldRef<"Pedido", 'String'>
+  readonly codigoComprovante: Prisma.FieldRef<"Pedido", 'String'>
+  readonly combos: Prisma.FieldRef<"Pedido", 'Json'>
+  readonly usuarioId: Prisma.FieldRef<"Pedido", 'Int'>
 }
     
 
@@ -1290,6 +1654,10 @@ export type PedidoCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    */
   data: Prisma.PedidoCreateManyInput | Prisma.PedidoCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PedidoIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1360,6 +1728,10 @@ export type PedidoUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    * Limit how many Pedidos to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PedidoIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1426,6 +1798,25 @@ export type PedidoDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Limit how many Pedidos to delete.
    */
   limit?: number
+}
+
+/**
+ * Pedido.usuario
+ */
+export type Pedido$usuarioArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Usuario
+   */
+  select?: Prisma.UsuarioSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Usuario
+   */
+  omit?: Prisma.UsuarioOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UsuarioInclude<ExtArgs> | null
+  where?: Prisma.UsuarioWhereInput
 }
 
 /**

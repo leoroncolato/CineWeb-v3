@@ -46,8 +46,10 @@ export interface Ingresso {
   id: number;
   tipo: string;
   valorPago: number;
+  assento?: string | null;
   sessaoId: number;
   sessao?: Sessao;
+  pedidoId?: number | null;
 }
 
 export interface Pedido {
@@ -56,4 +58,15 @@ export interface Pedido {
   qtMeia: number;
   valorTotal: number;
   dataHora: string;
+  formaPagamento?: string | null;
+  statusPagamento: string;
+  codigoComprovante: string;
+  combos?: any[];
+  usuario?: {
+    id: number;
+    nome: string;
+    email: string;
+  } | null;
+  ingressos?: Ingresso[];
+  lanches?: LancheCombo[];
 }

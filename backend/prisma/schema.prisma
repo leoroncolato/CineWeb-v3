@@ -11,6 +11,27 @@ datasource db {
   provider = "postgresql"
 }
 
+enum UserRole {
+  ADMIN
+  USER
+}
+
+model Usuario {
+  id                  Int        @id @default(autoincrement())
+  nome                String
+  email               String     @unique
+  senhaHash           String
+  role                UserRole   @default(USER)
+  resetToken          String?    @unique
+  resetTokenExpiresAt DateTime?
+  createdAt           DateTime   @default(now())
+  updatedAt           DateTime   @updatedAt
+
+  pedidos             Pedido[]
+
+  @@map("usuarios")
+}
+
 model Cinema {
   id          Int      @id @default(autoincrement())
   nome        String
@@ -91,6 +112,7 @@ model Ingresso {
   id           Int      @id @default(autoincrement())
   tipo         String   // "Inteira", "Meia", etc
   valorPago    Float    
+  assento      String?
   
   sessaoId     Int
   sessao       Sessao   @relation(fields: [sessaoId], references: [id], onDelete: Cascade)
@@ -98,6 +120,7 @@ model Ingresso {
   pedidoId     Int?
   pedido       Pedido?  @relation(fields: [pedidoId], references: [id], onDelete: Cascade)
 
+  @@unique([sessaoId, assento])
   @@map("ingressos")
 }
 
@@ -117,14 +140,21 @@ model LancheCombo {
 }
 
 model Pedido {
-  id         Int           @id @default(autoincrement())
-  qtInteira  Int
-  qtMeia     Int
-  valorTotal Float
-  dataHora   DateTime      @default(now())
+  id                Int           @id @default(autoincrement())
+  qtInteira         Int
+  qtMeia            Int
+  valorTotal        Float
+  dataHora          DateTime      @default(now())
+  formaPagamento    String?
+  statusPagamento   String        @default("APROVADO")
+  codigoComprovante String        @unique @default(uuid())
+  combos            Json?
 
-  ingressos  Ingresso[]
-  lanches    LancheCombo[]
+  usuarioId         Int?
+  usuario           Usuario?      @relation(fields: [usuarioId], references: [id], onDelete: SetNull)
+
+  ingressos         Ingresso[]
+  lanches           LancheCombo[]
 
   @@map("pedidos")
 }

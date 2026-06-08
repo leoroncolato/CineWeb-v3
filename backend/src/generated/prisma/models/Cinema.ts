@@ -328,18 +328,6 @@ export type CinemaNullableScalarRelationFilter = {
   isNot?: Prisma.CinemaWhereInput | null
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
-}
-
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type CinemaCreateNestedOneWithoutListaSalasInput = {
   create?: Prisma.XOR<Prisma.CinemaCreateWithoutListaSalasInput, Prisma.CinemaUncheckedCreateWithoutListaSalasInput>
   connectOrCreate?: Prisma.CinemaCreateOrConnectWithoutListaSalasInput

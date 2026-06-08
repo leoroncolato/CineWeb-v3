@@ -62,22 +62,13 @@ export function PDVPage() {
       addToast('O carrinho está vazio!', 'warning'); return;
     }
     
-    // Preparar DTO conforme a RN3 do backend
-    // No backend LancheComboDto precisa: lancheComboId, qtUnidade
-    const lanchesPayload = carrinhoLanches.map(c => ({
-      lancheComboId: c.item.id,
-      qtUnidade: c.qt
-    }));
     const ingressosIds = carrinhoIngressos.map(i => i.id);
+    const lancheIds = carrinhoLanches.flatMap(c => Array.from({ length: c.qt }, () => c.item.id));
 
     try {
       await api.post('/pedido', {
-        ingressosIds,
-        lanches: lanchesPayload,
-        // qtInteira e qtMeia podem ser inferidos no back ou mandados explicitamente
-        qtInteira: carrinhoIngressos.filter(i => i.tipo === 'Inteira').length,
-        qtMeia: carrinhoIngressos.filter(i => i.tipo === 'Meia').length,
-        valorTotal: valorFinal // mandamos para conferencia ou aceitar override se o backend confiar
+        ingressoIds: ingressosIds,
+        lancheIds,
       });
       addToast('Pedido fechado e salvo com sucesso!', 'success');
       setCarrinhoLanches([]);

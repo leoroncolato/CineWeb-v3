@@ -20,6 +20,7 @@ async function bootstrap() {
     .setTitle('CineWeb API')
     .setDescription('API de controle de cinema e vendas de ingressos/lanches')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   
   const documentFactory = () => SwaggerModule.createDocument(app, config);

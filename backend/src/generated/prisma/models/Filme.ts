@@ -584,14 +584,6 @@ export type FilmeUncheckedUpdateManyWithoutGeneroNestedInput = {
   deleteMany?: Prisma.FilmeScalarWhereInput | Prisma.FilmeScalarWhereInput[]
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
-}
-
 export type FilmeCreateNestedOneWithoutSessoesInput = {
   create?: Prisma.XOR<Prisma.FilmeCreateWithoutSessoesInput, Prisma.FilmeUncheckedCreateWithoutSessoesInput>
   connectOrCreate?: Prisma.FilmeCreateOrConnectWithoutSessoesInput

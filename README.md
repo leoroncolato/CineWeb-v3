@@ -1,54 +1,84 @@
-# CineWeb Backend 🎬
+# CineWeb
 
-## Visão Geral
-O **CineWeb Backend** é uma API RESTful completa e robusta desenvolvida para o gerenciamento de um sistema de controle de cinemas. Evoluindo de um projeto acadêmico, esta versão atual inclui Swagger, regras de negócio baseadas no domínio, validação rigorosa de dados com class-validator e as integrações necessárias para operar com PostgreSQL. A aplicação suporta desde o cadastro de Gêneros, Filmes e alocação de Salas até a venda de Ingressos e gestão de Lanches e Pedidos consolidados. 
+Sistema de cinema com API NestJS, painel web React e aplicativo mobile React Native com Expo.
 
-## 🛠 Stack Tecnológica & Arquitetura
+## Funcionalidades
 
-Este projeto adota uma arquitetura modular baseada em serviços, utilizando as seguintes tecnologias:
+- Login, cadastro de usuario e recuperacao de senha com JWT.
+- Painel web para admin cadastrar generos, filmes, salas, sessoes, lanches/combos e consultar pedidos.
+- App mobile para listar filmes/sessoes, escolher sessao, assentos, tipo de ingresso, combos e pagamento.
+- Emissao de comprovante com codigo unico.
+- Sincronizacao: filmes/sessoes/lanches cadastrados no web aparecem no mobile; compras feitas no mobile aparecem no web.
+- Armazenamento local dos ingressos no mobile com SQLite e sincronizacao via API.
 
-* **Linguagem:** TypeScript
-* **Framework:** NestJS (Node.js)
-* **Banco de Dados:** PostgreSQL
-* **ORM:** Prisma ORM
-* **Documentação:** Swagger (OpenAPI)
-* **Validação:** class-validator e class-transformer
+## Estrutura
 
-## 🗄️ Entidades e Funcionalidades Implementadas
+- `backend`: API NestJS + Prisma + PostgreSQL.
+- `frontend`: painel administrativo web em React/Vite.
+- `mobile`: app Expo/React Native.
 
-A arquitetura de dados foi desenhada para garantir integridade referencial, e as validações foram transferidas para os services da API, aplicando DTOs para proteção dos endpoints:
+## Backend
 
-* **Gênero:** CRUD completo. Nome único.
-* **Filme:** CRUD completo com referência a um Gênero. Duração controlada em minutos e relacionamento retornado nas consultas (Swagger e endpoints de GET).
-* **Sala:** CRUD completo, garantindo que o número ou identificação da sala seja estritamente único. Capacidade em assentos.
-* **Sessão (Regra de Negócio 1):** CRUD completo. Ao criar ou atualizar uma sessão, o sistema garante ativamente que a Sala selecionada **não** possua nenhuma outra Sessão agendada cujos horários se sobreponham, baseado tanto no horário de início quanto na duração em minutos do filme atrelado.
-* **Ingresso (Regra de Negócio 2):** Criação e Visualização. A emissão de tickets é bloqueada (409 Conflict) caso a sessão em questão já tenha atingido a capacidade máxima estabelecida da respectiva Sala.
-* **LancheCombo:** CRUD completo contendo gestão de valores.
-* **Pedido (Regra de Negócio 3):** Criação e Visualização. Calcula de maneira automática o `valorTotal` do pedido efetuando a soma do preço de ingressos e/ou itens e lanches inseridos nele.
+```bash
+cd backend
+npm install
+```
 
-## 🚀 Como iniciar e testar
+Crie `backend/.env`:
 
-1. Entre no diretório do backend e garanta que as dependências estejam instaladas:
-   ```bash
-   cd backend
-   npm install
-   ```
+```env
+DATABASE_URL="postgresql://usuario:senha@localhost:5432/cineweb"
+JWT_SECRET="troque-este-segredo"
+```
 
-2. Certifique-se de configurar a variável `DATABASE_URL` em um arquivo `.env` localizado na pasta `backend` caso o seu banco de dados PostgreSQL exija dados de login (O padrão assumido aponta para a URL local).
+Rode migrations e gere o Prisma Client:
 
-3. Sincronize o banco de dados via Prisma:
-   ```bash
-   npx prisma db push
-   npx prisma generate
-   ```
+```bash
+npx prisma migrate dev
+npx prisma generate
+npm run start:dev
+```
 
-4. Inicie o servidor:
-   ```bash
-   # Rodar em desenvolvimento (watch)
-   npm run start:dev
-   ```
+Swagger: `http://localhost:3000/api`.
 
-5. **Documentação Swagger:** Navegue para `http://localhost:3000/api` para testar os endpoints de forma visual. O NestJS validation fará com que qualquer entrada incorreta retorne `400 Bad Request`.
+## Web Admin
 
----
-Desenvolvido como projeto acadêmico - CineWeb 2.0.
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Variavel opcional:
+
+```env
+VITE_API_URL=http://localhost:3000
+```
+
+No primeiro acesso, use a opcao `Primeiro admin` para criar o administrador inicial. Depois use login normalmente.
+
+## Mobile Expo
+
+```bash
+cd mobile
+npm install
+npm run start
+```
+
+Variavel opcional:
+
+```env
+EXPO_PUBLIC_API_URL=http://localhost:3000
+```
+
+Em emulador Android, use `http://10.0.2.2:3000`. Em aparelho fisico, use o IP da maquina na rede, por exemplo `http://192.168.0.10:3000`.
+
+## Fluxo principal
+
+1. Admin entra no web e cadastra filmes, salas, sessoes e combos.
+2. Usuario cria conta ou entra no mobile.
+3. Mobile lista as sessoes vindas da API.
+4. Usuario escolhe assento, tipo de ingresso, combos e forma de pagamento.
+5. Backend valida JWT, assento livre, capacidade, calcula total e cria pedido/ingressos.
+6. Mobile salva o comprovante localmente no SQLite.
+7. Web admin consulta `Pedidos Sync` e ve a compra feita pelo mobile.

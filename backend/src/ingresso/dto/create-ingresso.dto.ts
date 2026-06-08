@@ -12,6 +12,11 @@ export class CreateIngressoDto {
   @Min(0)
   valorPago: number;
 
+  @ApiPropertyOptional({ description: 'Assento escolhido, ex: A1' })
+  @IsOptional()
+  @IsString()
+  assento?: string;
+
   @ApiProperty()
   @IsInt()
   sessaoId: number;

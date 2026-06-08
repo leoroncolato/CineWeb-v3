@@ -10,9 +10,10 @@ import { IngressoModule } from './ingresso/ingresso.module';
 import { LancheComboModule } from './lanche-combo/lanche-combo.module';
 import { PedidoModule } from './pedido/pedido.module';
 import { GeneroModule } from './genero/genero.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [PrismaModule, CinemaModule, SalaModule, FilmeModule, SessaoModule, IngressoModule, LancheComboModule, PedidoModule, GeneroModule],
+  imports: [PrismaModule, AuthModule, CinemaModule, SalaModule, FilmeModule, SessaoModule, IngressoModule, LancheComboModule, PedidoModule, GeneroModule],
   controllers: [AppController],
   providers: [AppService],
 })
