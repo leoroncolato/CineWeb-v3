@@ -61,3 +61,6 @@ cinema-nestjs/*
 
 *.pdf
 *.txt
+
+# Arquivos locais de apresentacao
+PASSO_A_PASSO_APRESENTACAO_LOCAL.md
